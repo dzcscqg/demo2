@@ -1,0 +1,35 @@
+ <view class="body2">
+   <view class='header'>
+    <image src='../../img/touxiang.png'></image>
+   </view>
+   <view class='body3'>
+   <view class="body3_des">
+   <view class='font_des2'>个人成绩</view>
+   <image src="../../img/down.png"></image>
+   </view>
+   <view class='body'>
+    <view class='body_des'>
+       <image src='../../img/name.png'></image>
+       <text class='font_size2'>姓   名:{{username}}</text>
+    </view>
+    <view class='divLine'></view>
+     <view class='body_des'  bindtap='SininBtn'>
+       <image src='../../img/app4.png'></image>
+       <text class='font_size2'>身份号:{{idCard}}</text>
+      </view>
+    <view class='divLine'></view>
+    <view class='body_des' bindtap='SeainBtn'>
+       <image src='../../img/subject.png'></image>
+       <text class='font_size2'>科   目:{{subject}}</text>
+    </view>
+    <view class='divLine'></view>
+    <view class='body_des'>
+       <image src='../../img/app5.png'></image>
+       <text class='font_size2'>分   数:{{grade}}</text>
+    </view>
+    <view class='divLine'></view>
+  </view>
+   
+  
+   </view>
+  </view>

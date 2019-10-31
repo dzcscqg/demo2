@@ -1,0 +1,43 @@
+{
+  "pages": [
+    "pages/login/login",
+    "pages/search/search",
+    "pages/index/index",
+    "pages/sign/sign",
+    "pages/my/my",
+    "pages/apply/apply",
+    "pages/show/show"
+   
+  ],
+  "window": {
+    "backgroundTextStyle": "light",
+    "navigationBarBackgroundColor": "#00A2FF",
+    "navigationBarTitleText": "信工考啦",
+    "navigationBarTextStyle": "black"
+  },
+  "tabBar": {
+    "color": "##00A2FF",
+    "list": [
+      {
+        "pagePath": "pages/index/index",
+        "iconPath": "img/index.png",
+        "selectedIconPath": "img/index.png",
+        "text": "首页"
+      },
+      {
+        "pagePath": "pages/apply/apply",
+        "iconPath": "img/app.png",
+        "selectedIconPath": "img/app.png",
+        "text": "应用中心"
+      },
+     
+      {
+        "pagePath": "pages/my/my",
+        "iconPath": "img/my.png",
+        "selectedIconPath": "img/my.png",
+        "text": "个人中心"
+      }
+    ]
+  },
+  "sitemapLocation": "sitemap.json"
+}
