@@ -98,7 +98,7 @@
         <div class="card-body">
             <div class="ta-log-left">
                 <form class="form-inline my-2 my-lg-0">
-                    <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+                    <input class="form-control mr-sm-2" type="search" placeholder="日志名称" aria-label="Search">
                     <button class="btn btn-outline-primary my-2 my-sm-0" type="submit">Search</button>
                     <button class="btn btn-danger  ml-2" ><i class="fa fa-trash"></i>&nbsp;批量删除</button>
                 </form>
@@ -109,10 +109,10 @@
                     <thead>
                     <tr>
                         <th>
-                            <input type="checkbox">
+                            <input type="checkbox" class="checkbox-all">
                         </th>
                         <th scope="col">#</th>
-                        <th scope="col">操作</th>
+                        <th scope="col">日志名称</th>
                         <th scope="col">日期</th>
                         <th scope="col">操作id</th>
                         <th scope="col">操作者</th>
@@ -123,15 +123,15 @@
                     <tbody>
                     <tr th:each="item,start:${logs}" th:data-logsid="${item.logId}">
                         <th>
-                           <input type="checkbox" >
+                           <input type="checkbox" class="checkbox-to-all" >
                         </th>
                         <th scope="row" th:text="${start.index+1}">#</th>
                         <td th:text="${item.logOperation}">操作</td>
-                        <td th:text="${item.logTime}">日期</td>
+                        <td th:text="${#dates.format(item.logTime,'yyyy-MM-dd HH:mm:ss')}">日期</td>
                         <td th:text="${item.logUserid}"></td>
                         <td th:text="${item.logUser}">操作者</td>
                         <td>
-                            <button class="btn btn-success btn-sm fax btn-detail" data-toggle="modal" data-target=""><li class="fa fa-check "></li></button>
+                            <button class="btn btn-outline-dark btn-sm btn-detail" data-toggle="modal" data-target="">详情</button>
 
                             <button class="btn btn-danger btn-sm fax" ><i class="fa fa-trash"></i></button>
                         </td>
@@ -140,17 +140,17 @@
 
                 </table>
 
-                <div CLASS="tab-f">
+                <div class="tab-f">
                     <ul class="logsUl">
                         <li>共 &nbsp;<a th:text="${pageInfo.total}"></a>&nbsp;条</li>
                         <li>|</li>
-                        <li>每页&nbsp;5&nbsp;条</li>
+                        <li>每页&nbsp;10&nbsp;条</li>
                         <li>|</li>
                         <li>共&nbsp;<a th:text="${pageInfo.pages}"></a>&nbsp;页</li>
                     </ul>
 
                     <nav aria-label="Page navigation example" class="nav-page">
-                        <button type="button" id="first" class="btn btn-outline-primary ct btn-f1"
+                        <button type="button" id="first" class="btn btn-outline-primary ct btn-sm"
                                 th:data-url="@{/bs/logs}">首页
                         </button>
                         <ul class="pagination pagination-sm ct">
@@ -172,7 +172,7 @@
                                 </a>
                             </li>
                         </ul>
-                        <button type="button" id="last" class="btn btn-outline-primary ct btn-f1"
+                        <button type="button" id="last" class="btn btn-outline-primary ct btn-sm"
                                 th:data-url="@{/bs/logs(pageNum=${pageInfo.pages})}">尾页
                         </button>
                     </nav>
@@ -244,7 +244,7 @@
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">关闭</button>
-                <button type="button" class="btn btn-primary">修改</button>
+
             </div>
         </div>
     </div>
@@ -331,8 +331,17 @@
                 $(this).attr("data-target","#exampleModalCenter")
             }
         })
+        $(".checkbox-all").click(function () {
+            if($(this).is(':checked')){
 
+                $(".checkbox-to-all").prop("checked",true);
+            }else{
+
+                $(".checkbox-to-all").prop("checked",false);
+            }
+        })
     })
+
 </script>
 </body>
 </html>

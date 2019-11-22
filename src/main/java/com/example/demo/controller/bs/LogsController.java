@@ -31,7 +31,7 @@ public class LogsController extends AllException {
     @RequiresPermissions("103")
     public String getLos(Model model, @RequestParam(defaultValue = "1", value = "pageNum") Integer pageNum, HttpServletRequest request) {
 
-        PageHelper.startPage(pageNum, 5);
+        PageHelper.startPage(pageNum, 10);
         List<Logs> logsList = logsService.selectAll();
 
         PageInfo<Logs> pageInfo = new PageInfo<Logs>(logsList);
