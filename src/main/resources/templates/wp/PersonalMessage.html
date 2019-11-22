@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>个人信息</title>
+    <link rel="stylesheet" href="/dist/css/bootstrap.min.css">
+    <script type="text/javascript" src="/js/jquery-3.3.1.min.js"></script>
+    <script src="/dist/js/bootstrap.min.js"></script>
+    <style>
+        .item_content{
+            /*padding-left: 100px;*/
+            /*float: right;*/
+            margin-bottom: 10px;
+        }
+
+
+        .item_content h3{
+            font-size: 14px;
+            color: #FF6347;
+            margin: 0;
+        }
+
+
+        .item_info{
+            font-size: 12px;
+            font-style: italic;
+            margin:15px;
+            color: #999;
+        }
+
+
+        .item_desc{
+            font-size: 14px;
+            margin: 0;
+            color: gray;
+            margin-top:10px; /*与h2有一定的边距*/
+            border-left: solid 1px #ccc;/*设置左边框*/
+            padding-left: 10px;/*设置左填充*/
+        }
+        .item_img{
+            float: left;
+            height: 60px;
+            width: 100px;
+        }
+        .main-p{
+            width: 60%;
+            margin: 10px auto;
+            padding: 4%;
+            border: 1px solid gainsboro;
+            background: white;
+        }
+        .left-p{
+            float: right;
+        }
+        body{
+            padding: 0px;
+            margin: 0px;
+        }
+        .containers {
+            width: 100%;
+            height: 1400px;
+
+
+        }
+
+        .navbar-brand {
+            padding: 0px;
+            height: 60px;
+            line-height: 60px;
+            padding-left: 70px;
+        }
+
+        .navbar-brand img {
+            display: block;
+        }
+
+        .navbar.navbar-light.bg-light {
+            border: none;
+            height: 60px;
+            background-color: white!important;
+            margin: 0px !important;
+            padding: 0px !important;
+            display: block;
+        }
+
+        .top {
+            height: 61px;
+            width: 100%;
+            border-bottom: 1px solid #E4E4E4;
+
+        }
+        .ntop{
+            height: 30px;
+            width: 100%;
+            font-size: 14px;
+            line-height: 30px;
+            color: #31708f;
+        }
+        .ct {
+            float: left;
+        }
+
+        .logo {
+            width: 15%;
+
+        }
+
+        .x {
+            width: 80%;
+
+            text-align: left;
+            font-size: 24px;
+            color: midnightblue;
+            padding-top: 10px;
+            padding-bottom: 10px;
+        }
+
+        .nava a {
+            padding: 0px !important;
+            margin-right: 80px;
+            color: midnightblue !important;
+
+            font-size: 14px;
+        }
+        .carousel-item img{
+            width: 100%;
+            height: 412px;
+
+        }
+
+    </style>
+</head>
+<body>
+<div class="top">
+    <nav class="navbar navbar-light bg-light">
+        <div class="logo ct">
+            <a class="navbar-brand" href="#">
+                <img alt="Brand" src="/img/logo5.png" width="120px" height="60px">
+            </a>
+        </div>
+        <div class="x ct">
+            <ul class="nav nav-pills">
+
+                <li role="presentation" class="nava"><a href="#">首页</a></li>
+                <li role="presentation" class="nava"><a href="#">咨询中心</a></li>
+                <li role="presentation" class="nava"><a href="#">考试大纲</a></li>
+                <li role="presentation" class="nava"><a href="#">考试咨询</a></li>
+                <li role="presentation" class="nava"><a href="#">相关下载</a></li>
+                <li role="presentation" class="nava"><a href="#">考生服务</a></li>
+                <li role="presentation" class="nava"><a href="#">常见问题</a></li>
+            </ul>
+        </div>
+    </nav>
+</div>
+<div class="ntop">
+    <a>首页</a> ><a>个人信息</a>
+</div>
+<div class="main-p">
+    <div class="item_img">
+        <img src="/img/avatar-7.jpg" height="80px" width="80px">
+    </div>
+    <div class="item_content">
+        <h2>头像设置</h2>
+        <p class="item_info">选择头像文件</p>
+        <p class="item_desc">仅支持jpg、jpeg、png格式的文件<br>
+        </p>
+    </div>
+    <form>
+        <div class="form-row">
+            <div class="form-group col-md-6">
+                <label for="inputNickname">昵称</label>
+                <input type="text" class="form-control" id="inputNickname" placeholder="Nickname" >
+            </div>
+            <div class="form-group col-md-6">
+                <label for="inputPhone">账号</label>
+                <input type="text" class="form-control" id="inputID" placeholder="登录id" >
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="inputEmail">邮箱</label>
+            <input type="email" class="form-control" id="inputEmail" placeholder="Email" >
+        </div>
+        <div class="form-group">
+            <label for="inputPhone">手机号</label>
+            <input type="text" class="form-control" id="inputPhone" placeholder="手机号" >
+        </div>
+        <div class="form-group">
+            <label for="inputPassword">密码</label>
+            <input type="text" class="form-control" id="inputPassword" placeholder="密码" >
+        </div>
+        <div class="form-group">
+            <label for="inputConfiPassword">确认密码</label>
+            <input type="text" class="form-control" id="inputConfiPassword" placeholder="确认密码" >
+        </div>
+        <div class="form-group xun">
+            <label> <!--for="exampleInputPassword1">-->证件类型（选填）</label>
+            <select id="typeOfID" class="form-control form-select" name="cType">
+                <option value="0">请选择证件类型</option>
+                <option value="1">中华人民共和国居民身份证</option>
+                <option value="2">台湾居民往来大陆通行证</option>
+                <option value="3">港澳居民来往内地通行证</option>
+                <option value="4">军人证件</option>
+                <option value="5">护照</option>
+                <option value="6">香港身份证</option>
+                <option value="7">澳门身份证</option>
+            </select>
+        </div>
+        <div class="form-group ">
+            <label><!--for="exampInputPassword1"-->证件号（选填）</label>
+            <input type="passwordVerify" class="form-control" id="InputPasswordVerify" name="cIdcard" placeholder="证件号">
+        </div>
+        <div class="form-group">
+            <label> <!--for="exampleInputPassword1"-->姓名（选填）</label>
+            <input type="passwordVerify" class="form-control" id="IPasswordVerify" name="cName" placeholder="请填写真实姓名">
+        </div>
+        <div class="form-group">
+            <label> <!--for="exampleInputPassword1">-->性别（选填）</label>
+            <input type="passwordVerify" class="form-control" id="PasswordVerify" name="cSex" placeholder="性别">
+        </div>
+
+
+    </form>
+        <div class="form-row">
+            <div class="form-group col-md-2">
+                <label for="inputState">账户状态</label>
+                <input type="text" class="form-control" id="inputState" placeholder="状态" >
+            </div>
+            <div class="form-group col-md-6">
+                <label for="inputTime">创建时间</label>
+                <input type="text" class="form-control" id="inputTime" placeholder="创建时间" >
+            </div>
+            <div class="form-group col-md-2">
+                <label for="inputZip">Zip</label>
+                <input type="text" class="form-control" id="inputZip">
+            </div>
+        </div>
+
+        <div class="left-p">
+            <button type="submit" class="btn btn-primary ">修改</button>
+            <button type="submit" class="btn btn-secondary">返回</button>
+        </div>
+    </form>
+</div>
+
+
+</body>
+</html>
