@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="/css/common.css">
+    <link rel="stylesheet" href="/switch/style.css">
+    <link rel="stylesheet" href="/switch/zzsc.css">
+    <style>
+        .card-img-total {
+            width: 100%;
+            height: 460px;
+            background-color: rgba(58, 97, 117, 0.02);
+            border: 2px solid gainsboro;
+            border-radius: 0;
+        }
+
+        .plus-img {
+            width: 80px;
+            height: 80px;
+            position: relative;
+            top: 40%;
+            display: block;
+            margin: auto;
+
+        }
+        .switch-state{
+
+            height: 32.8px;
+
+        }
+       
+    </style>
+</head>
+<body>
+<h1 class="text-capitalize text-black-50 font-weight-normal">考试管理</h1>
+<div class="breadcrumb-holder">
+    <div class="container-fluid">
+        <ul class="breadcrumb">
+            <li class="breadcrumb-item"><a href="index.html">考务中心</a></li>
+            <li class="breadcrumb-item active">考试管理</li>
+        </ul>
+    </div>
+</div>
+<div>
+
+    <div class="card ct m-3" style="width: 18rem;" th:each="item:${exam}">
+        <img class="card-img-top img-top-height" th:src="${item.eBackground}" alt="Card image cap">
+        <div class="card-body">
+            <h5 class="card-title" th:text="${item.eName}"></h5>
+
+            <p class="font-sm">报名开始时间:
+                <small class="font-sm" th:text="${#dates.format(item.eBegin,'yyyy-MM-dd HH:mm:ss')}"></small>
+            </p>
+            <p class="font-sm">报名截止时间:
+                <small class="font-sm" th:text="${#dates.format(item.eEnd,'yyyy-MM-dd HH:mm:ss')}"></small>
+            </p>
+            <p class="font-sm">考试开始时间:
+                <small class="font-sm" th:text="${#dates.format(item.eBegin,'yyyy-MM-dd HH:mm:ss')}"></small>
+            </p>
+            <p class="font-sm">考试截止时间:
+                <small class="font-sm" th:text="${#dates.format(item.eEnd,'yyyy-MM-dd HH:mm:ss')}"></small>
+            </p>
+            <div style="width: 100%;height: 40px;height: 40px">
+            <div class="ct switch-state">状态：</div>
+            <div class="switch-box is-info ct" style="margin-top: 6px">
+
+                <input th:id="${'info'+item.eId}" class="switch-box-input" type="checkbox" th:if="${item.eState==1}" checked />
+                <input th:id="${'info'+item.eId}" class="switch-box-input" type="checkbox" th:if="${item.eState==0}"  />
+                <label th:for="${'info'+item.eId}" class="switch-box-slider"></label>
+                <label th:for="${'info'+item.eId}" class="switch-box-label" style="color: white">Info</label>
+            </div>
+        </div>
+
+           <p> <a href="#" class="card-link">设置</a></p>
+        </div>
+    </div>
+    <div class="plus ct m-3 height2" style="width: 18rem;">
+        <div class="card-img-total">
+            <img src="/img/plus.jpg" class="plus-img">
+        </div>
+    </div>
+
+</div>
+<script>
+    
+
+</script>
+</body>
+</html>
