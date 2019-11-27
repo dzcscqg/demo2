@@ -73,7 +73,7 @@ public class BsMainController extends AllException {
                 request.getSession().setAttribute("ID", user.getaId());
                 adminService.setAdminForLogin(user.getaId(), user.getaSt(), user.getaCount());
                 return "redirect:mainpod";
-            } catch (UnknownAccountException e) {
+        } catch (UnknownAccountException e) {
                 System.out.println("用户不存在");
                 redirectAttributes.addAttribute("i", "4");
                 return "redirect:login";

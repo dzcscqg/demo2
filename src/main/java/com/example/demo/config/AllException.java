@@ -4,8 +4,12 @@ import org.apache.shiro.authc.ConcurrentAccessException;
 import org.apache.shiro.authz.UnauthenticatedException;
 import org.apache.shiro.authz.UnauthorizedException;
 import org.apache.shiro.crypto.CryptoException;
+import org.springframework.web.HttpRequestMethodNotSupportedException;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
+import org.springframework.web.servlet.NoHandlerFoundException;
+
+import java.io.NotActiveException;
 
 @ControllerAdvice
 public class AllException {
@@ -20,7 +24,13 @@ public class AllException {
         } else if (ex instanceof ConcurrentAccessException) {
             System.out.println("我勒个去，页面被外星人挟持了!");
             return "error/403";
+        } else  if(ex instanceof HttpRequestMethodNotSupportedException){
+            return "error/405";
+        }else if(ex instanceof NoHandlerFoundException){
+            return "error/404";
+        }else if(ex instanceof Exception ){
+            return "error/500";
         }
-        return null;
+        return "error/400";
     }
 }

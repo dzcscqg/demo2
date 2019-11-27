@@ -11,10 +11,14 @@
     <result column="c_idcard" property="cIdcard" jdbcType="VARCHAR" />
     <result column="c_image" property="cImage" jdbcType="VARCHAR" />
     <result column="c_sex" property="cSex" jdbcType="VARCHAR" />
-    <result column="c_type" property="cType" jdbcType="VARCHAR"/>
+    <result column="c_type" property="cType" jdbcType="VARCHAR" />
+    <result column="c_state" property="cState" jdbcType="INTEGER" />
+    <result column="c_school" property="cSchool" jdbcType="VARCHAR" />
+    <result column="c_college" property="cCollege" jdbcType="VARCHAR" />
   </resultMap>
   <sql id="Base_Column_List" >
-    c_id, c_nickname, c_mail, c_telephone, c_pwd, c_name, c_idcard, c_image, c_sex,c_type
+    c_id, c_nickname, c_mail, c_telephone, c_pwd, c_name, c_idcard, c_image, c_sex, c_type, 
+    c_state, c_school, c_college
   </sql>
   <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
     select 
@@ -56,12 +60,14 @@
   <insert id="insert" parameterType="com.example.demo.entity.Candidate" >
     insert into candidate (c_id, c_nickname, c_mail, 
       c_telephone, c_pwd, c_name, 
-      c_idcard, c_image, c_sex
-      )
+      c_idcard, c_image, c_sex, 
+      c_type, c_state, c_school, 
+      c_college)
     values (#{cId,jdbcType=INTEGER}, #{cNickname,jdbcType=VARCHAR}, #{cMail,jdbcType=VARCHAR}, 
       #{cTelephone,jdbcType=VARCHAR}, #{cPwd,jdbcType=VARCHAR}, #{cName,jdbcType=VARCHAR}, 
-      #{cIdcard,jdbcType=VARCHAR}, #{cImage,jdbcType=VARCHAR}, #{cSex,jdbcType=VARCHAR}
-      )
+      #{cIdcard,jdbcType=VARCHAR}, #{cImage,jdbcType=VARCHAR}, #{cSex,jdbcType=VARCHAR}, 
+      #{cType,jdbcType=VARCHAR}, #{cState,jdbcType=INTEGER}, #{cSchool,jdbcType=VARCHAR}, 
+      #{cCollege,jdbcType=VARCHAR})
   </insert>
   <insert id="insertSelective" parameterType="com.example.demo.entity.Candidate" >
     insert into candidate
@@ -96,6 +102,15 @@
       <if test="cType != null" >
         c_type,
       </if>
+      <if test="cState != null" >
+        c_state,
+      </if>
+      <if test="cSchool != null" >
+        c_school,
+      </if>
+      <if test="cCollege != null" >
+        c_college,
+      </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides="," >
       <if test="cId != null" >
@@ -127,6 +142,15 @@
       </if>
       <if test="cType != null" >
         #{cType,jdbcType=VARCHAR},
+      </if>
+      <if test="cState != null" >
+        #{cState,jdbcType=INTEGER},
+      </if>
+      <if test="cSchool != null" >
+        #{cSchool,jdbcType=VARCHAR},
+      </if>
+      <if test="cCollege != null" >
+        #{cCollege,jdbcType=VARCHAR},
       </if>
     </trim>
   </insert>
@@ -160,6 +184,15 @@
       <if test="cType != null" >
         c_type = #{cType,jdbcType=VARCHAR},
       </if>
+      <if test="cState != null" >
+        c_state = #{cState,jdbcType=INTEGER},
+      </if>
+      <if test="cSchool != null" >
+        c_school = #{cSchool,jdbcType=VARCHAR},
+      </if>
+      <if test="cCollege != null" >
+        c_college = #{cCollege,jdbcType=VARCHAR},
+      </if>
     </set>
     where c_id = #{cId,jdbcType=INTEGER}
   </update>
@@ -172,7 +205,11 @@
       c_name = #{cName,jdbcType=VARCHAR},
       c_idcard = #{cIdcard,jdbcType=VARCHAR},
       c_image = #{cImage,jdbcType=VARCHAR},
-      c_sex = #{cSex,jdbcType=VARCHAR}
+      c_sex = #{cSex,jdbcType=VARCHAR},
+      c_type = #{cType,jdbcType=VARCHAR},
+      c_state = #{cState,jdbcType=INTEGER},
+      c_school = #{cSchool,jdbcType=VARCHAR},
+      c_college = #{cCollege,jdbcType=VARCHAR}
     where c_id = #{cId,jdbcType=INTEGER}
   </update>
 </mapper>

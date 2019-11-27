@@ -1,8 +1,5 @@
 package com.example.demo.entity;
 
-import lombok.ToString;
-
-@ToString
 public class Candidate {
     private Integer cId;
 
@@ -21,15 +18,14 @@ public class Candidate {
     private String cImage;
 
     private String cSex;
+
     private String cType;
 
-    public String getcType() {
-        return cType;
-    }
+    private Integer cState;
 
-    public void setcType(String cType) {
-        this.cType = cType;
-    }
+    private String cSchool;
+
+    private String cCollege;
 
     public Integer getcId() {
         return cId;
@@ -101,5 +97,37 @@ public class Candidate {
 
     public void setcSex(String cSex) {
         this.cSex = cSex == null ? null : cSex.trim();
+    }
+
+    public String getcType() {
+        return cType;
+    }
+
+    public void setcType(String cType) {
+        this.cType = cType == null ? null : cType.trim();
+    }
+
+    public Integer getcState() {
+        return cState;
+    }
+
+    public void setcState(Integer cState) {
+        this.cState = cState;
+    }
+
+    public String getcSchool() {
+        return cSchool;
+    }
+
+    public void setcSchool(String cSchool) {
+        this.cSchool = cSchool == null ? null : cSchool.trim();
+    }
+
+    public String getcCollege() {
+        return cCollege;
+    }
+
+    public void setcCollege(String cCollege) {
+        this.cCollege = cCollege == null ? null : cCollege.trim();
     }
 }

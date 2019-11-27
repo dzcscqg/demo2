@@ -18,6 +18,7 @@ public interface AdminMapper {
 
     Admin selectInfo(String account);
 
+    int selectByAccount(String account);
     Admin selectToLogin(@Param("account") String account, @Param("password") String password);
 
     Admin selectByShiro(String account);

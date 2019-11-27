@@ -58,4 +58,15 @@ public class AdminService {
     public int deleteByPrimaryKey(int a_id){
         return adminMapper.deleteByPrimaryKey(a_id);
     }
+
+    public int update(Admin admin){
+       return adminMapper.updateByPrimaryKeySelective(admin) ;
+    }
+
+    public int selectByAccount(String account){
+        return adminMapper.selectByAccount(account);
+    }
+    public int insert(Admin admin){
+       return adminMapper.insertSelective(admin) ;
+    }
 }

@@ -20,7 +20,22 @@
     select
     <include refid="Base_Column_List" />
     from role
-    where r_limited=#{limited}
+    where r_id=#{limited}
+  </select>
+  <select id="selectAll" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from role
+    <where>
+<if test='search!="null"'>
+       r_role=#{search}
+</if>
+    </where>
+  </select>
+  <select id="selectAll2" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from role
   </select>
   <select id="selctByAccount" resultMap="BaseResultMap">
     select

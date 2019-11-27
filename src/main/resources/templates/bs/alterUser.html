@@ -6,15 +6,21 @@
     <link rel="stylesheet" href="/css/common.css">
 
 </head>
-
+<style>
+    .image-input {
+        width: 128px;
+        height: 140px;
+    }
+</style>
 <body>
+
 <h1 class="text-capitalize text-black-50 font-weight-normal">用户管理</h1>
 <div class="breadcrumb-holder">
     <div class="container-fluid">
         <ul class="breadcrumb">
             <li class="breadcrumb-item"><a href="index.html">系统管理</a></li>
             <li class="breadcrumb-item active">用户管理</li>
-            <li class="breadcrumb-item active">添加用户</li>
+            <li class="breadcrumb-item active">修改用户信息</li>
         </ul>
     </div>
 </div>
@@ -22,66 +28,77 @@
     <form>
         <div class="form-group col-md-8">
             <label for="nickname">昵称</label>
-            <input type="text" class="form-control " id="nickname"  placeholder="昵称">
-            <small id="nameHelp" class="form-text text-muted">如果您没有想好昵称，系统将为您自动生成一个，如果您已想好那么请确保在6——10个字符之间</small>
+            <input type="text" class="form-control " th:data-id="${admin.aId}" id="nickname"  placeholder="昵称" th:value="${admin.aName}">
+            <small id="nameHelp" class="form-text text-muted"></small>
         </div>
         <div class="form-group col-md-4">
             <label for="phone">手机号</label>
-            <input type="text" class="form-control" id="phone"   placeholder="手机号将作为您的账号">
-            <small id="phoneHelp" class="form-text text-muted"></small>
+            <input type="text" class="form-control " id="phone" readonly th:value="${admin.aPhone}" placeholder="手机号将作为您的账号">
+            <small id="phoneHelp" class="form-text text-muted">手机号作为账号不能修改</small>
         </div>
         <div class="form-group col-md-6">
             <label for="email">邮箱</label>
-            <input type="email" class="form-control" id="email" aria-describedby="emailHelp" placeholder="邮箱">
+            <input type="email" class="form-control" id="email" th:value="${admin.aMail}" aria-describedby="emailHelp"
+                   placeholder="邮箱">
             <small id="emailHelp" class="form-text text-muted">邮箱将用于验证账户，恢复密码等功能</small>
         </div>
         <div class="form-group col-md-4">
             <label for="password">密码</label>
-            <input type="password" class="form-control" id="password" placeholder="密码">
+            <input type="text" class="form-control" th:value="${admin.aPassword}" id="password" placeholder="密码">
             <small id="passwordHelp" class="form-text text-muted"></small>
         </div>
         <div class="form-group col-md-4">
             <label for="inputState">状态</label>
             <select id="inputState" class="form-control">
-                <option selected>激活</option>
-                <option>禁用</option>
+
+                <option selected th:data-id="1" th:text="${admin.aState==true?'激活':'禁用'}">激活</option>
+                <option selected th:data-id="0" th:if="${admin.aState==true?'禁用':'激活'}">禁用</option>
+
             </select>
         </div>
 
         <div class="form-group col-md-4">
             <label for="inputLimited">角色分配</label>
             <select id="inputLimited" class="form-control">
-                <option th:each="item2:${role}" th:id="${item2.rId}" th:text="${item2.rRole}" >超级管理员</option>
+                <option selected  th:id="${role2.rId}" th:text="${role2.rRole}">Choose...</option>
+                <option th:each="item2:${role}" th:id="${item2.rId}" th:text="${item2.rRole}" th:if="${item2.rRole}!=${role2.rRole}">超级管理员</option>
+
             </select>
         </div>
 
-<div class="col-md-6">
-        <button type="button" class="btn btn-default  btn-len">返回</button>
-        <button type="button" class="btn btn-primary btn-len">添加用户</button>
-</div>
+    <!--    <div class="form-group col-md-4">
+            <label for="inputImage">请选择头像</label>
+            <div>
+                <img th:src="${admin.aPhoto}==null?'/img/avatar-0.jpg':${admin.aPhoto}" id="inputImage"
+                     class="img-thumbnail image-input">
+            </div>
+
+        </div>-->
+
+        <div class="col-md-6">
+            <button type="button" class="btn btn-default  btn-len">返回</button>
+            <button type="button" class="btn btn-primary btn-len">修改</button>
+        </div>
     </form>
 </div>
 <script>
-$(function () {
     $(".btn-primary").click(function () {
         var selected = $("#inputLimited").find("option:selected").attr("id")
         var state=$("#inputState").find("option:selected").attr("data-id")
         var email=$("#email").val()
         var password=$("#password").val()
-        var phone=$("#phone").val()
-
+        var aid=$("#nickname").attr("data-id")
         var nickname=$("#nickname").val()
-
         $.ajax({
-            url:"/bs/userAdd",
+            url:"/bs/userAlter",
             type:"get",
             contentType:"application/json",
-            data:{"selected":selected,"state":state,"email":email,"password":password,"nickname":nickname,"phone":phone},
+            data:{"selected":selected,"state":state,"email":email,"password":password,"aid":aid,"nickname":nickname},
             success:function (m) {
                 console.log(m)
                 if(m==1){
-                    $("#contents").load("/bs/user") /*都用这个*/
-                    Toast("添加成功","2000")
+                     $("#contents").load("/bs/user") /*都用这个*/
+                    Toast("修改成功","2000")
                 }else if(m==0){
                     Toast("数据库异常","2000")
                 }else{
@@ -90,7 +107,6 @@ $(function () {
             },
         })
     })
-})
 </script>
 </body>
 </html>

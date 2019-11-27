@@ -122,9 +122,9 @@
                <td th:text="${item.aCount}">@mdo</td>-->
 
             <td>
-                <button class="btn btn-outline-dark btn-sm ">修改</button>
+                <button class="btn btn-outline-dark btn-sm "  th:onclick="'jump(\''+@{/bs/selectRoleAll(userid=${item.aId})}+'\')'">修改</button>
                 <button class="btn btn-danger btn-sm del">删除</button>
-                <button class="btn btn-primary btn-sm">分配角色</button>
+
                 <button class="btn btn-success btn-sm">重置密码</button>
             </td>
         </tr>
@@ -171,9 +171,50 @@
 
 </div>
 
+<div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalCenterTitle">日志详情</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form>
+                    <div class="form-group row">
+                        <label for="staticRid" class="col-sm-2 col-form-label">当前</label>
+                        <div class="col-sm-10">
+                            <input type="text" readonly class="form-control-plaintext" id="staticRid" value="系统管理员">
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label for="inputRole" class="col-sm-2 col-form-label">新角色</label>
+                        <div  class="col-sm-10">
+                        <select id="inputRole" class="form-control">
+                            <option selected>Choose...</option>
+                            <option>超级管理员</option>
+                            <option>系统管理员</option>
+                        </select>
+                        </div>
+                    </div>
+                </form>
+
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">关闭</button>
+                <button type="button" class="btn btn-primary"  id="alter">修改</button>
+            </div>
+        </div>
+    </div>
+</div>
 <script type="text/javascript" src="/js/jquery-2.1.1.min.js"/>
 <script type="text/javascript" src="/js/rcswitcher.min.js"/>
 <script>
+    function jump(url){
+        $("#contents").load(url)
+        sessionStorage.setItem("url",url)
+    }
     $(function () {
         $('.permissions :checkbox').rcSwitcher({
 
@@ -249,6 +290,9 @@
             $("#contents").load("/bs/addUser")
             sessionStorage.setItem("url","/bs/addUser")
         })
+
+
+
     })
 
 

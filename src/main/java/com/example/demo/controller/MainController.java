@@ -1,19 +1,24 @@
 package com.example.demo.controller;
 
 import com.alibaba.fastjson.JSONObject;
+import com.example.demo.entity.Menu;
 import com.example.demo.entity.Test;
 import com.example.demo.service.AdminService;
+import com.example.demo.service.AuthorityService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
 import java.io.Console;
 import java.util.HashMap;
+import java.util.List;
 
 @Controller
 public class MainController {
     @Autowired
     private AdminService adminService;
+    @Autowired
+    private AuthorityService authorityService;
     @RequestMapping("hello")
     public String Hello() {
         return "HelloWorld";
@@ -64,6 +69,10 @@ public class MainController {
         System.out.println(test);
         return "你成功了";
     }
-
+    @RequestMapping("test9")
+    @ResponseBody
+    public List<Menu> test9(){
+        return authorityService.getMenu(1);
+    }
 
 }
