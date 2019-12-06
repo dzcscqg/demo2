@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <title>HomePage</title>
     <link rel="stylesheet" type="text/css" href="/css/bootstrap.min.css"/>
+    <link rel="stylesheet" type="text/css" href="/css/wpFoot.css">
     <script type="text/javascript" src="/js/jquery-3.3.1.min.js"></script>
     <script type="text/javascript" src="/js/bootstrap.min.js"></script>
 
@@ -296,7 +297,7 @@
         </div>
         <div class="ct account" th:if="${nickname}!=null">
             <span class="names" >hi,<a th:text="${nickname}"></a></span>
-            <a class="out">退出登录</a>
+            <a href="/wp/logout" class="out">退出登录</a>
         </div>
     </nav>
 </div>
@@ -350,20 +351,61 @@
                 <td><a href="/wp/login"><button class="btn btn-danger" >考试登录</button></a></td>
             </tr>
             <tr>
-                <td><button class="btn btn-warning">考试报名</button></td>
+                <td><a href="/wp/Exam"><button class="btn btn-warning">考试报名</button></a></td>
                 <td><button class="btn btn-primary">考试查询</button></td>
             </tr>
             <tr>
-                <td><button class="btn btn-light">个人信息</button></td>
+                <td><a href="/wp/secret/PersonalMessage"><button class="btn btn-light">个人中心</button></a></td>
                 <td><button class="btn btn-success">成绩查询</button></td>
             </tr>
+
         </table>
     </div>
 </div>
 <div class="bottom"></div>
+<div class="foot">
+    <!-- <div class="bottom_left"><img src="../img/logo.jpg"> </div>-->
+    <div class="links">
+        <a href="#">
+            关于考拉
+        </a>
+        |
+        <a href="#">
+            联系我们
+        </a>
+        |
+        <a href="#">
+            人才招聘
+        </a>
+        |
+        <a href="#">
+            广告服务
+        </a>
+        |
+        <a href="#">
+            微信考拉
+        </a>
+        |
+        <a href="#">
+            侵权投诉
+        </a>
+    </div>
+
+    <div class="copyright">
+        Copyright&nbsp;&copy;&nbsp;2004-2019&nbsp;&nbsp;考拉KL.com&nbsp;版权所有
+    </div>
+</div>
 </body>
-<script type="text/javascript">
-    $(document).ready({})
+<script type="text/javascript"  th:inline="javascript">
+    var abc=[[${msg}]]
+    $(document).ready({
+
+    })
+    $(function () {
+        if(abc!=null){
+            alert("请登录")
+        }
+    })
     var t = 0, b = 0;
     $(window).scroll(function () {
         t = $(this).scrollTop();

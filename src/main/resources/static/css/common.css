@@ -22,3 +22,10 @@
 .height2{
     height: 465px;
 }
+.common-3{
+    width: 90%;
+    margin: 20px auto;
+    border: 1px solid Window;
+    background: white;
+    padding: 20px;
+}

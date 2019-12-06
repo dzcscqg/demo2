@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <title>Register</title>
     <link rel="stylesheet" type="text/css" href="/css/bootstrap.min.css"/>
+    <link rel="stylesheet" type="text/css" href="/css/wpNav.css"/>
     <script type="text/javascript" src="/js/jquery-3.3.1.min.js"></script>
     <script type="text/javascript" src="/js/bootstrap.min.js"></script>
     <style>
@@ -16,42 +17,6 @@
             /* background: #1b6d85;*/
         }
 
-        .navbar.navbar-default.navbar-fixed-top {
-            border: none;
-            height: 60px;
-            line-height: 60px !important;
-            margin: 0px;
-
-        }
-
-        .topColor {
-
-        }
-
-        .top {
-            height: 60px;
-            width: 100%;
-        }
-
-        .float_left {
-            float: left;
-        }
-
-        .navbar-brand {
-            padding: 0px;
-            height: 60px;
-            line-height: 60px;
-
-        }
-        .navbar-header{
-            float: right;
-        }
-        .topLable {
-            height: 60px;
-            padding-left: 40px;
-            color: #130355;
-
-        }
 
         .topLable h3 {
             margin-top: 16px;
@@ -183,7 +148,8 @@
             height: 60px;
 
         }
-        .inh{
+
+        .inh {
             width: 60%;
             height: 60px;
             text-align: left;
@@ -192,6 +158,7 @@
             line-height: 60px;
 
         }
+
         .copyright {
             width: 100%;
             height: 30px;
@@ -245,78 +212,49 @@
             font-family: 'myfonts' !important;
         }
 
-        .link {
-            text-decoration: none;
-        }
-
         .zxc {
             color: red;
             font-size: 12px;
             margin-top: 4px;
         }
 
-        /*.warn{
-            display: none;
-        }*/
-
-
-        .x {
-            display: block;
-            float: left;
-            margin-left: 20px;
-            color: #191970;
-        }
-
-        .top_right{
-            width: 25%;
-            height: 60px;
-            line-height: 60px;
-            font-size: 20px;
-
-        }
-        .x3{
-            display: block;
-            float: right;
-            margin-right: 20px;
-            color: #191970;
-        }
-        .xun{
+        .xun {
             margin-top: 40px;
         }
-        .checkbox{
 
+        .checkbox {
 
         }
-        .xeiyi{
+
+        .xeiyi {
             margin-left: 20px;
             color: red;
         }
+
     </style>
 
 </head>
 
 <body>
+
 <div class="top">
-    <nav class="navbar navbar-default   topColor">
-        <div class="container-fluid float_left" style="padding: 0px;line-height: 60px!important;">
-            <div class="navbar-header">
-                <a class="navbar-brand" href="#">
-                    <img alt="Brand" src="/img/logo5.png" width="120px" height="60px">
-                </a>
-            </div>
+    <nav class="navbar navbar-light bg-light">
+        <div class="logo ct">
+            <a class="navbar-brand" href="#">
+                <img alt="Brand" src="/img/logo5.png" width="120px" height="60px">
+            </a>
         </div>
-        <div class="float_left inh">
-            <a class="x ">考拉会员注册</a>
+        <div class="titles ct ">
 
-
-        </div>
-   <div class=" float_left top_right">
-       <a class="x3" href="/wp/login">登录</a>
-       <a class="x3" href="/wp/HomePage">首页</a>
+            <a class="titles1 ct">考拉会员注册</a>
+            <a class="ct">|</a>
+            <a class="titles2 ct" href="/wp/HomePage">首页</a>
 
         </div>
     </nav>
 </div>
+
+
 <div class="containers">
     <div class="headline">
         <span>加入考啦</span>
@@ -351,7 +289,8 @@
             </div>
             <div class="checkbox">
                 <label>
-                    <input type="checkbox" id="check" >我已阅读并同意<a>《考拉用户协议》</a><small class="xeiyi"></small>
+                    <input type="checkbox" id="check">我已阅读并同意<a>《考拉用户协议》</a>
+                    <small class="xeiyi"></small>
                 </label>
             </div>
 
@@ -370,11 +309,13 @@
             </div>
             <div class="form-group ">
                 <label><!--for="exampInputPassword1"-->证件号（选填）</label>
-                <input type="passwordVerify" class="form-control" id="InputPasswordVerify" name="cIdcard" placeholder="证件号">
+                <input type="passwordVerify" class="form-control" id="InputPasswordVerify" name="cIdcard"
+                       placeholder="证件号">
             </div>
             <div class="form-group">
                 <label> <!--for="exampleInputPassword1"-->姓名（选填）</label>
-                <input type="passwordVerify" class="form-control" id="IPasswordVerify" name="cName" placeholder="请填写真实姓名">
+                <input type="passwordVerify" class="form-control" id="IPasswordVerify" name="cName"
+                       placeholder="请填写真实姓名">
             </div>
             <div class="form-group">
                 <label> <!--for="exampleInputPassword1">-->性别（选填）</label>
@@ -439,10 +380,10 @@
             $(".warn1").html("")
         })
         $("#Phone").blur(function () {
-            var phone=$("#Phone").val()
-            if(phone==""){
+            var phone = $("#Phone").val()
+            if (phone == "") {
                 return;
-            }else if(!phone.match(/^1[34578]\d{9}$/)){
+            } else if (!phone.match(/^1[34578]\d{9}$/)) {
                 $(".warn1").html("手机号格式不正确")
             }
         })
@@ -450,10 +391,10 @@
             $(".warn2").html("")
         })
         $("#InputPassword").blur(function () {
-            var pwd=$("#InputPassword").val()
-            if(pwd==""){
+            var pwd = $("#InputPassword").val()
+            if (pwd == "") {
                 return;
-            }else if(!pwd.match(/^(?![0-9]+$)(?![a-zA-Z]+$)[0-9A-Za-z]{8,16}$/)){
+            } else if (!pwd.match(/^(?![0-9]+$)(?![a-zA-Z]+$)[0-9A-Za-z]{8,16}$/)) {
                 $(".warn2").html("密码格式不正确")
             }
         })
@@ -461,18 +402,18 @@
             $(".warn3").html("")
         })
         $("#verify_password").blur(function () {
-            var pwd=$("#InputPassword").val()
-            var pwd2=$("#verify_password").val()
-            if(pwd2==""){
+            var pwd = $("#InputPassword").val()
+            var pwd2 = $("#verify_password").val()
+            if (pwd2 == "") {
                 return;
-            }else if(pwd!=pwd2){
+            } else if (pwd != pwd2) {
                 $(".warn3").html("两次输入密码不正确")
             }
         })
         $("#check").click(function () {
-            var checked=$("#check").attr("checked")
+            var checked = $("#check").attr("checked")
 
-            if($(this).is(":checked")){
+            if ($(this).is(":checked")) {
                 $(".xeiyi").html("")
             }
         })
@@ -487,22 +428,22 @@
         var rpassward = $("#verify_password").val();
 
 
-        if(iphone==""||ipassward==""||rpassward==""){
+        if (iphone == "" || ipassward == "" || rpassward == "") {
             alert("请填写个人信息")
             return false;
-        }else if(!$("#check").is(":checked")){
+        } else if (!$("#check").is(":checked")) {
             $(".xeiyi").html("同意用户协议之后方能注册")
             return false;
-        }else if(imail!=""&&!imail.match(/^[A-Za-z0-9\u4e00-\u9fa5]+@[a-zA-Z0-9_-]+(\.[a-zA-Z0-9_-]+)+$/)) {
+        } else if (imail != "" && !imail.match(/^[A-Za-z0-9\u4e00-\u9fa5]+@[a-zA-Z0-9_-]+(\.[a-zA-Z0-9_-]+)+$/)) {
             $(".warn").html("邮箱格式不正确，请重新填写");
             return false;
-        }else if(!iphone.match(/^1[34578]\d{9}$/)){
+        } else if (!iphone.match(/^1[34578]\d{9}$/)) {
 
             return false;
-        }else if(!ipassward.match(/^(?![0-9]+$)(?![a-zA-Z]+$)[0-9A-Za-z]{8,16}$/)){
+        } else if (!ipassward.match(/^(?![0-9]+$)(?![a-zA-Z]+$)[0-9A-Za-z]{8,16}$/)) {
 
             return false;
-        }else if(ipassward!=rpassward){
+        } else if (ipassward != rpassward) {
 
             return false;
         }

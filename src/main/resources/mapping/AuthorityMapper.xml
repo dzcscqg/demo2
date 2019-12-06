@@ -22,10 +22,15 @@
     select
     a.j_id, a.pid, a.j_name, a.j_url, a.j_icon, a.j_show
     from authority a
-    INNER JOIN role r on r.r_limited=#{limited}
+    INNER JOIN role r on r.r_id=#{limited}
     INNER JOIN rj j on j.r_id=r.r_id
     WHERE j.j_id=a.j_id and a.j_show!=""
   </select>
+    <select id="selectAll" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from  authority
+    </select>
     <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
     delete from authority
     where j_id = #{jId,jdbcType=INTEGER}

@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import javax.servlet.http.HttpServletRequest;
@@ -27,12 +28,16 @@ public class HomePage {
     private CandidateService candidateService;
     /* 进入主页 */
     @RequestMapping("HomePage")
-    public String getHomePage(Model model, HttpServletRequest request){
+    public String getHomePage(Model model, HttpServletRequest request, @RequestParam(defaultValue = "-1",value = "msg")int msg){
 
-        String account= (String) request.getSession().getAttribute("account");
-        if(account!=null) {
-            String nickname = candidateService.getNickname(account);
-            model.addAttribute("nickname", nickname);
+
+        String nickname= (String) request.getSession().getAttribute("nickname");
+
+           // String nickname = candidateService.getNickname(account);
+           model.addAttribute("nickname", nickname);
+
+        if(msg==1){
+           model.addAttribute("msg","请登录");
         }
         List<News> news = newsService.getTitleAndDate();
         model.addAttribute("news",news);

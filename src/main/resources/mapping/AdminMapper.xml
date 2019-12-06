@@ -60,10 +60,10 @@
     a_lst, a_count
   </sql>
     <select id="selectByShiro" resultMap="LimitedMap">
-    select a.a_id,a.a_name,a.a_phone,a.a_mail,a.a_password,a.a_photo,a.a_state,a_ct, a_st,a_count,
-          r.r_id,r.r_role,r.r_limited,au.j_id,au.j_name,au.j_url
+    select a.a_id,a.a_name,a.a_phone,a.a_mail,a.a_password,a.a_photo,a.a_state,a_ct, a_st,a_count,a.a_limited,
+          r.r_id,r.r_role,au.j_id,au.j_name,au.j_url
     from admin a
-    inner join role r on a.a_limited=r.r_limited
+    inner join role r on a.a_limited=r.r_id
     inner join rj on rj.r_id=r.r_id
     inner join authority au on au.j_id=rj.j_id
     where  a.a_phone=#{account}
@@ -78,7 +78,7 @@
       select  a.a_id, a.a_name, a.a_phone, a.a_mail, a.a_limited, a.a_state, a.a_ct, a.a_st,
     a.a_lst, a.a_count ,r.r_role
   from  admin a
-	INNER JOIN role r on a.a_limited=r.r_limited
+	INNER JOIN role r on a.a_limited=r.r_id
   </select>
     <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer">
         select
@@ -91,6 +91,10 @@
     from admin
     where ( a_phone=#{account} or a_mail=#{account} )
   </select>
+    <select id="selectByAccount" resultType="int">
+        select count(*) from admin
+        where a_phone=#{account}
+    </select>
     <select id="selectToLogin" resultMap="BaseResultMap">
         select
         <include refid="Base_Column_List"/>

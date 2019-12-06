@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="/css/lr.css">
+    <link rel="stylesheet" href="/css/icheck-material.min.css">
+</head>
+<body>
+<h1 class="text-capitalize text-black-50 font-weight-normal">权限配置</h1>
+<div class="breadcrumb-holder">
+    <div class="container-fluid">
+        <ul class="breadcrumb">
+            <li class="breadcrumb-item"><a href="index.html">系统管理</a></li>
+            <li class="breadcrumb-item active">角色管理</li>
+            <li class="breadcrumb-item active">权限配置</li>
+        </ul>
+    </div>
+</div>
+<div class="common-2">
+<div class="ct-lr">
+    <div class="card  bg-light mb-3  " style="max-width: 18rem;">
+        <div class="card-header">待分配权限者</div>
+        <div class="card-body">
+            <h5 class="card-title" th:text="${rRole}" th:id="${rid}">Primary card title</h5>
+            <p class="card-text">分配权限请基于角色的作用，权限的分配关乎系统安全，请谨慎！！！</p>
+        </div>
+    </div>
+
+    <div class="card text-white bg-secondary mb-3" style="max-width: 18rem;">
+        <div class="card-header">权限说明</div>
+        <div class="card-body">
+            <h5 class="card-title">系统管理</h5>
+            <p class="card-text">系统管理包含用户管理、公告管理、系统日志、个人中心、角色管理五大模块，请根据需求配置</p>
+        </div>
+    </div>
+    <div class="card text-white bg-primary mb-3" style="max-width: 18rem;">
+        <div class="card-header">权限管理</div>
+        <div class="card-body">
+            <h5 class="card-title">考务中心</h5>
+            <p class="card-text">考务中心包含考试管理、报名管理、成绩管理、和证书管理。请根据需求配置</p>
+        </div>
+    </div>
+</div>
+    <div class="ct-lr r-right">
+
+
+        <div class="icheck-material-lightblue">
+            <input type="checkbox" id="check-all-blue"/>
+            <label for="check-all-blue">全选</label>
+        </div>
+
+        <div th:each="item:${menu}">
+            <div class="icheck-material-lightblue">
+                <input type="checkbox" th:id="${item.jId}" class="abs" />
+                <label th:for="${item.jId}" th:text="${item.jName}" class="check-to-all-blue">系统管理</label>
+            </div>
+            <div style="margin-left: 40px" th:each="item2:${item.childMenus}">
+                <div class="icheck-material-lightblue">
+                    <input type="checkbox" th:id="${item2.jId}" class="abs"/>
+                    <label th:for="${item2.jId}" th:text="${item2.jName}" class="check-to-all-blue">角色管理</label>
+                </div>
+                <div style="margin-left: 80px" th:each="item3:${item2.childMenus}">
+                <div class="icheck-material-lightblue" >
+                    <input type="checkbox" th:id="${item3.jId}" class="abs"/>
+                    <label th:for="${item3.jId}" th:text="${item3.jName}">角色管理</label>
+                </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="m-5">
+        <button class="btn btn-dark w-25">返回</button>
+        <button class="btn btn-primary w-25">提交</button>
+        </div>
+    </div>
+</div>
+<script>
+    $(function () {
+        $("#check-all-blue").click(function () {
+
+            if($(this).is(':checked')){
+
+                $("input[type='checkbox']").prop("checked",true);
+            }else{
+
+                $("input[type='checkbox']").prop("checked",false);
+            }
+        })
+       $(".check-to-all-blue").click(function () {
+          var flag=$(this).prev("input").is(':checked')
+          if(flag==true){
+              $(this).parent("div").nextAll("div").find("div").find("input[type='checkbox']").prop("checked",false);
+          }else {
+              $(this).parent("div").nextAll("div").find("div").find("input[type='checkbox']").prop("checked",true);
+          }
+       })
+        $(".btn-primary").click(function () {
+            var a =  new Array();
+            var rid=$(".card-title").attr("id")
+            var role=$(".card-title").text()
+            $(".abs").each(function () {
+                if($(this).is(':checked')){
+                    a.push($(this).attr("id"))
+                }
+            })
+           $.ajax({
+               url:"/bs/roleAllocT",
+               type:"get",
+               dataType:"text",
+               contentType:"application/json",
+               data:{"rid":rid,"jid":a},
+               success:function (m) {
+
+                   if(m==1){
+
+                       alert("权限配置成功,重新登录后见效")
+                   }else if(m==0){
+                       Toast("数据库异常","2000")
+                   }else{
+                       Toast("你的级别还不够高,加油吧！少年。","2000")
+                   }
+               },
+           })
+        })
+    })
+
+</script>
+</body>
+</html>

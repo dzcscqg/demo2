@@ -53,6 +53,19 @@ public class AuthorityService {
         }
         return childList;
     }
-
+    @Cacheable(value = "users",key = "1024")
+    public List<Menu> selectAll(){
+        List<Authority> authorityList=authorityMapper.selectAll();
+        List<Menu> menu=new ArrayList<>(3);
+        for(int i=0;i<authorityList.size();i++){
+            if(authorityList.get(i).getPid()==null){
+                menu.add(authorityList.get(i));
+            }
+        }
+        for (Menu menus:menu){
+            menus.setChildMenus(getChild(menus.getJId(),authorityList));
+        }
+        return menu;
+    }
 
 }

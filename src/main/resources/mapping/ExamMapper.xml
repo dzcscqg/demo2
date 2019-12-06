@@ -11,9 +11,11 @@
     <result column="e_shutdown" property="eShutdown" jdbcType="TIMESTAMP" />
     <result column="e_state" property="eState" jdbcType="INTEGER" />
     <result column="e_remark" property="eRemark" jdbcType="VARCHAR" />
+    <result column="e_price" property="ePrice" jdbcType="DOUBLE" />
   </resultMap>
   <sql id="Base_Column_List" >
-    e_id, e_name, e_background, e_start, e_end, e_begin, e_shutdown, e_state, e_remark
+    e_id, e_name, e_background, e_start, e_end, e_begin, e_shutdown, e_state, e_remark, 
+    e_price
   </sql>
   <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
     select 
@@ -26,6 +28,12 @@
     <include refid="Base_Column_List" />
     from exam
   </select>
+  <select id="selectAllWhereState" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from exam
+    where e_state=1
+  </select>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
     delete from exam
     where e_id = #{eId,jdbcType=INTEGER}
@@ -33,12 +41,12 @@
   <insert id="insert" parameterType="com.example.demo.entity.Exam" >
     insert into exam (e_id, e_name, e_background, 
       e_start, e_end, e_begin, 
-      e_shutdown, e_state, e_remark
-      )
+      e_shutdown, e_state, e_remark, 
+      e_price)
     values (#{eId,jdbcType=INTEGER}, #{eName,jdbcType=VARCHAR}, #{eBackground,jdbcType=VARCHAR}, 
       #{eStart,jdbcType=TIMESTAMP}, #{eEnd,jdbcType=TIMESTAMP}, #{eBegin,jdbcType=TIMESTAMP}, 
-      #{eShutdown,jdbcType=TIMESTAMP}, #{eState,jdbcType=INTEGER}, #{eRemark,jdbcType=VARCHAR}
-      )
+      #{eShutdown,jdbcType=TIMESTAMP}, #{eState,jdbcType=INTEGER}, #{eRemark,jdbcType=VARCHAR}, 
+      #{ePrice,jdbcType=DOUBLE})
   </insert>
   <insert id="insertSelective" parameterType="com.example.demo.entity.Exam" >
     insert into exam
@@ -70,6 +78,9 @@
       <if test="eRemark != null" >
         e_remark,
       </if>
+      <if test="ePrice != null" >
+        e_price,
+      </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides="," >
       <if test="eId != null" >
@@ -98,6 +109,9 @@
       </if>
       <if test="eRemark != null" >
         #{eRemark,jdbcType=VARCHAR},
+      </if>
+      <if test="ePrice != null" >
+        #{ePrice,jdbcType=DOUBLE},
       </if>
     </trim>
   </insert>
@@ -128,6 +142,9 @@
       <if test="eRemark != null" >
         e_remark = #{eRemark,jdbcType=VARCHAR},
       </if>
+      <if test="ePrice != null" >
+        e_price = #{ePrice,jdbcType=DOUBLE},
+      </if>
     </set>
     where e_id = #{eId,jdbcType=INTEGER}
   </update>
@@ -140,7 +157,8 @@
       e_begin = #{eBegin,jdbcType=TIMESTAMP},
       e_shutdown = #{eShutdown,jdbcType=TIMESTAMP},
       e_state = #{eState,jdbcType=INTEGER},
-      e_remark = #{eRemark,jdbcType=VARCHAR}
+      e_remark = #{eRemark,jdbcType=VARCHAR},
+      e_price = #{ePrice,jdbcType=DOUBLE}
     where e_id = #{eId,jdbcType=INTEGER}
   </update>
 </mapper>

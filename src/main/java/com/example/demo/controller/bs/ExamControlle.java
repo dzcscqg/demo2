@@ -1,5 +1,6 @@
 package com.example.demo.controller.bs;
 
+import com.example.demo.config.AllException;
 import com.example.demo.entity.Exam;
 import com.example.demo.service.ExamService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,7 +12,7 @@ import java.util.List;
 
 @Controller
 @RequestMapping("bs")
-public class ExamControlle {
+public class ExamControlle extends AllException {
     @Autowired
     private ExamService examService;
     @RequestMapping("exam")

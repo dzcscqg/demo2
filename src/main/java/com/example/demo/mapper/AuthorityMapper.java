@@ -17,6 +17,8 @@ public interface AuthorityMapper {
 
     List<Authority> selectByRole(int limited);
 
+    List<Authority> selectAll();
+
     int updateByPrimaryKeySelective(Authority record);
 
     int updateByPrimaryKey(Authority record);

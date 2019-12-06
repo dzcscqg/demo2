@@ -1,4 +1,4 @@
-/*
+
 package com.example.demo.controller.Interceptor;
 
 import com.example.demo.entity.Admin;
@@ -13,15 +13,15 @@ import javax.servlet.http.HttpServletResponse;
 public class MyInterceptor implements HandlerInterceptor {
     @Override
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
-       // String account = (String) request.getSession().getAttribute("ACCOUNT");
+        String account = (String) request.getSession().getAttribute("account");
 
 
 
-        if( SecurityUtils.getSubject().getPrincipal()!=null){
+        if( account!=null){
             return true;
         }else {//未登录
-            //直接重定向到登录页面
-            response.sendRedirect(request.getContextPath()+"/bs/login");
+            //直接重定向到首页
+            response.sendRedirect(request.getContextPath()+"/wp/HomePage?msg="+"1");
             return false;
         }
 
@@ -38,4 +38,4 @@ public class MyInterceptor implements HandlerInterceptor {
        // System.out.println("after");
     }
 }
-*/
+

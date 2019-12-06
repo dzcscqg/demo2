@@ -50,17 +50,17 @@
             <h5 class="card-title" th:text="${item.eName}"></h5>
 
             <p class="font-sm">报名开始时间:
-                <small class="font-sm" th:text="${#dates.format(item.eBegin,'yyyy-MM-dd HH:mm:ss')}"></small>
+                <small class="font-sm" th:text="${#dates.format(item.eStart,'yyyy-MM-dd HH:mm')}"></small>
             </p>
             <p class="font-sm">报名截止时间:
-                <small class="font-sm" th:text="${#dates.format(item.eEnd,'yyyy-MM-dd HH:mm:ss')}"></small>
+                <small class="font-sm" th:text="${#dates.format(item.eEnd,'yyyy-MM-dd HH:mm')}"></small>
             </p>
-            <p class="font-sm">考试开始时间:
+          <!--  <p class="font-sm">考试开始时间:
                 <small class="font-sm" th:text="${#dates.format(item.eBegin,'yyyy-MM-dd HH:mm:ss')}"></small>
             </p>
             <p class="font-sm">考试截止时间:
                 <small class="font-sm" th:text="${#dates.format(item.eEnd,'yyyy-MM-dd HH:mm:ss')}"></small>
-            </p>
+            </p>-->
             <div style="width: 100%;height: 40px;height: 40px">
             <div class="ct switch-state">状态：</div>
             <div class="switch-box is-info ct" style="margin-top: 6px">

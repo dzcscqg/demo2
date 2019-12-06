@@ -39,6 +39,24 @@
 
             memoryStoreEvictionPolicy="LRU"/>
 
+    <cache
+            name="auth"
+
+            eternal="false"
+
+            maxElementsInMemory="100"
+
+
+            overflowToDisk="false"
+
+            diskPersistent="false"
+
+            timeToIdleSeconds="0"
+
+            timeToLiveSeconds="360"
+            statistics="true"
+
+            memoryStoreEvictionPolicy="LRU"/>
     <!-- 授权缓存 -->
     <cache name="authorizationCache"
            maxElementsInMemory="100"
