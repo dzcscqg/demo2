@@ -5,9 +5,9 @@ import lombok.Setter;
 import lombok.ToString;
 
 import java.util.Date;
-@ToString
 @Setter
 @Getter
+@ToString
 public class Exam {
     private Integer eId;
 
@@ -26,6 +26,8 @@ public class Exam {
     private Integer eState;
 
     private String eRemark;
+
+    private Double ePrice;
 
 
 }

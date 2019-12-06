@@ -14,4 +14,8 @@ public class ExamService {
     public List<Exam> selectAll(){
         return examMapper.selectAll();
     }
+
+    public List<Exam> selectAllWhereState(){
+        return examMapper.selectAllWhereState();
+    }
 }

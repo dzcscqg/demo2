@@ -15,15 +15,24 @@
     <result column="c_state" property="cState" jdbcType="INTEGER" />
     <result column="c_school" property="cSchool" jdbcType="VARCHAR" />
     <result column="c_college" property="cCollege" jdbcType="VARCHAR" />
+    <result column="c_major" property="cMajor" jdbcType="VARCHAR" />
+    <result column="c_grade" property="cGrade" jdbcType="VARCHAR" />
+    <result column="c_stuent_num" property="cStuentNum" jdbcType="VARCHAR" />
+    <result column="c_class" property="cClass" jdbcType="VARCHAR" />
   </resultMap>
   <sql id="Base_Column_List" >
     c_id, c_nickname, c_mail, c_telephone, c_pwd, c_name, c_idcard, c_image, c_sex, c_type, 
-    c_state, c_school, c_college
+    c_state, c_school, c_college, c_major, c_grade, c_stuent_num, c_class
   </sql>
   <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
-    select 
+    select
     <include refid="Base_Column_List" />
     from candidate
+    where c_id = #{cId,jdbcType=INTEGER}
+  </select>
+  <select id="selectByPrimaryKeyToPwd" resultType="string">
+     select c_pwd
+     from candidate
     where c_id = #{cId,jdbcType=INTEGER}
   </select>
   <select id="selectToLogin" resultMap="BaseResultMap">
@@ -53,21 +62,38 @@
     where (c_telephone=#{account} or c_mail=#{account})and c_pwd =#{pwd}
 
   </select>
+  <select id="selectByAccount" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from candidate
+    where (c_telephone=#{account} or c_mail=#{account})
+  </select>
+
+  <select id="selectByCard" resultMap="BaseResultMap">
+     select
+    <include refid="Base_Column_List" />
+      from candidate
+       where c_idcard=#{card}
+  </select>
+
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
     delete from candidate
     where c_id = #{cId,jdbcType=INTEGER}
   </delete>
+
   <insert id="insert" parameterType="com.example.demo.entity.Candidate" >
-    insert into candidate (c_id, c_nickname, c_mail, 
-      c_telephone, c_pwd, c_name, 
-      c_idcard, c_image, c_sex, 
-      c_type, c_state, c_school, 
-      c_college)
-    values (#{cId,jdbcType=INTEGER}, #{cNickname,jdbcType=VARCHAR}, #{cMail,jdbcType=VARCHAR}, 
-      #{cTelephone,jdbcType=VARCHAR}, #{cPwd,jdbcType=VARCHAR}, #{cName,jdbcType=VARCHAR}, 
-      #{cIdcard,jdbcType=VARCHAR}, #{cImage,jdbcType=VARCHAR}, #{cSex,jdbcType=VARCHAR}, 
-      #{cType,jdbcType=VARCHAR}, #{cState,jdbcType=INTEGER}, #{cSchool,jdbcType=VARCHAR}, 
-      #{cCollege,jdbcType=VARCHAR})
+    insert into candidate (c_id, c_nickname, c_mail,
+      c_telephone, c_pwd, c_name,
+      c_idcard, c_image, c_sex,
+      c_type, c_state, c_school,
+      c_college, c_major, c_grade,
+      c_stuent_num, c_class)
+    values (#{cId,jdbcType=INTEGER}, #{cNickname,jdbcType=VARCHAR}, #{cMail,jdbcType=VARCHAR},
+      #{cTelephone,jdbcType=VARCHAR}, #{cPwd,jdbcType=VARCHAR}, #{cName,jdbcType=VARCHAR},
+      #{cIdcard,jdbcType=VARCHAR}, #{cImage,jdbcType=VARCHAR}, #{cSex,jdbcType=VARCHAR},
+      #{cType,jdbcType=VARCHAR}, #{cState,jdbcType=INTEGER}, #{cSchool,jdbcType=VARCHAR},
+      #{cCollege,jdbcType=VARCHAR}, #{cMajor,jdbcType=VARCHAR}, #{cGrade,jdbcType=VARCHAR},
+      #{cStuentNum,jdbcType=VARCHAR}, #{cClass,jdbcType=VARCHAR})
   </insert>
   <insert id="insertSelective" parameterType="com.example.demo.entity.Candidate" >
     insert into candidate
@@ -111,6 +137,18 @@
       <if test="cCollege != null" >
         c_college,
       </if>
+      <if test="cMajor != null" >
+        c_major,
+      </if>
+      <if test="cGrade != null" >
+        c_grade,
+      </if>
+      <if test="cStuentNum != null" >
+        c_stuent_num,
+      </if>
+      <if test="cClass != null" >
+        c_class,
+      </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides="," >
       <if test="cId != null" >
@@ -151,6 +189,18 @@
       </if>
       <if test="cCollege != null" >
         #{cCollege,jdbcType=VARCHAR},
+      </if>
+      <if test="cMajor != null" >
+        #{cMajor,jdbcType=VARCHAR},
+      </if>
+      <if test="cGrade != null" >
+        #{cGrade,jdbcType=VARCHAR},
+      </if>
+      <if test="cStuentNum != null" >
+        #{cStuentNum,jdbcType=VARCHAR},
+      </if>
+      <if test="cClass != null" >
+        #{cClass,jdbcType=VARCHAR},
       </if>
     </trim>
   </insert>
@@ -193,6 +243,18 @@
       <if test="cCollege != null" >
         c_college = #{cCollege,jdbcType=VARCHAR},
       </if>
+      <if test="cMajor != null" >
+        c_major = #{cMajor,jdbcType=VARCHAR},
+      </if>
+      <if test="cGrade != null" >
+        c_grade = #{cGrade,jdbcType=VARCHAR},
+      </if>
+      <if test="cStuentNum != null" >
+        c_stuent_num = #{cStuentNum,jdbcType=VARCHAR},
+      </if>
+      <if test="cClass != null" >
+        c_class = #{cClass,jdbcType=VARCHAR},
+      </if>
     </set>
     where c_id = #{cId,jdbcType=INTEGER}
   </update>
@@ -209,7 +271,11 @@
       c_type = #{cType,jdbcType=VARCHAR},
       c_state = #{cState,jdbcType=INTEGER},
       c_school = #{cSchool,jdbcType=VARCHAR},
-      c_college = #{cCollege,jdbcType=VARCHAR}
+      c_college = #{cCollege,jdbcType=VARCHAR},
+      c_major = #{cMajor,jdbcType=VARCHAR},
+      c_grade = #{cGrade,jdbcType=VARCHAR},
+      c_stuent_num = #{cStuentNum,jdbcType=VARCHAR},
+      c_class = #{cClass,jdbcType=VARCHAR}
     where c_id = #{cId,jdbcType=INTEGER}
   </update>
 </mapper>

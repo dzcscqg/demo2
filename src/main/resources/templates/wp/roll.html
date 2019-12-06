@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+
+    <title>个人信息验证</title>
+    <link rel="stylesheet" type="text/css" href="/dist/css/bootstrap.min.css"/>
+    <link rel="stylesheet" type="text/css" href="/css/wpTop.css"/>
+    <link rel="stylesheet" type="text/css" href="/css/wpNav.css"/>
+    <link rel="stylesheet" type="text/css" href="/css/wpFoot.css"/>
+    <link rel="stylesheet" type="text/css" href="/css/WpRollCentent.css"/>
+    <script type="text/javascript" src="/js/jquery-3.3.1.min.js"></script>
+    <script type="text/javascript" src="/dist/js/bootstrap.min.js"></script>
+</head>
+<body>
+
+<div class="top">
+    <nav class="navbar navbar-light bg-light">
+        <div class="logo ct">
+            <a class="navbar-brand" href="#">
+                <img alt="Brand" src="/img/logo5.png" width="120px" height="60px">
+            </a>
+        </div>
+        <div class="titles ct ">
+
+            <a class="titles1 ct">考拉报名系统</a>
+            <a class="ct">|</a>
+            <a class="titles2 ct" href="/wp/HomePage">首页</a>
+
+        </div>
+    </nav>
+</div>
+<div class="ntop">
+    <a>首页</a> ><a>考试报名-step1</a>
+</div>
+<div class="contents">
+    <div class="contentTi">
+        <h4 class="text-primary">资格信息确认</h4>
+        <hr>
+    </div>
+   <!-- <div class="warnInfo">
+        <div class="warnBody">
+            <span class="text-danger font-weight-bold">提示：</span>
+            <br>
+            <span class="font-small">1、如果发现学籍信息有误请勿继续报考,尽快前往个人中心修改或联系相关责任老师。</span><br>
+            <span class="font-small text-danger">2、如果学籍信息不全请前往个人中心填写，学籍信息不完整将不能进行下一步！</span><br>
+            <span class="font-small">3、考试报名成功后信息将不能修改。</span><br>
+            <span class="font-small text-danger">4、如果申请残疾考生合理便利，请在报名成功后，提供相应的证明材料,携带本人二代身份证以及《中华人民共和国残疾人证》及身份证原件和复印件到学校相关部门办理。</span><br>
+            <span class="font-small">5、如果发现学籍信息有误请勿继续报考,尽快前往个人中心修改或联系相关责任老师。</span><br>
+            <span class="font-small">6、如果发现学籍信息有误请勿继续报考,尽快前往个人中心修改或联系相关责任老师。</span><br>
+        </div>
+    </div>-->
+    <div class="accountInfo">
+        <div class="float_left infoLeft">
+            <img th:src="${candidate.cImage}" class="photo">
+        </div>
+        <div class="float_left infoRight">
+            <ul class="list-group">
+                <li class="list-group-item list-none "><span
+                        class="text-info font-weight-bold">姓名：</span><span th:text="${candidate.cName}" class="info">周应祥</span></li>
+                <li class="list-group-item list-none"><span class="text-info font-weight-bold">性别：</span><span th:text="${candidate.cSex}" class="info">男</span>
+                </li>
+                <li class="list-group-item list-none"><span class="text-info font-weight-bold">证件类型：</span><span th:text="${candidate.cType}" class="info">中华人民共和国居民身份证</span>
+                </li>
+                <li class="list-group-item list-none"><span class="text-info font-weight-bold">证件号：</span><span th:text="${candidate.cIdcard}" class="info">5115221998122243313</span>
+                </li>
+            </ul>
+        </div>
+    </div>
+    <div class="studyInfo">
+        <div class="studyAlter rounded" style="font-size: 14px">
+
+            <!--<button class="btn-sm btn btn-light ml-4" onclick=""></button>-->
+           <P><text class="text-danger ml-4">提示：</text>如若以上信息不全将不能进行下一步，请到个人信息中心完善信息。<a  class="badge badge-danger" href="/wp/secret/PersonalMessage">&nbsp;个人中心</a></P>
+        </div>
+        <div class="studyInfoTable">
+            <div class="tableTi rounded">
+                <span>个人信息</span>
+            </div>
+
+            <table class="table table-bordered mt-1 table-striped">
+
+                <tbody>
+                <tr>
+                    <th scope="row">报名学校(默认)</th>
+                    <td colspan="6" th:text="${candidate.cSchool}" class="info">杭州电子科技大学信息工程学院</td>
+
+                </tr>
+                <tr>
+                    <th scope="row">报名校区(默认)</th>
+                    <td colspan="6" th:text="${candidate.cCollege}" class="info" >信息工程学院</td>
+
+                </tr>
+                <tr>
+
+                    <td colspan="8"></td>
+                </tr>
+
+                <tr>
+                    <th scope="row">年级</th>
+                    <td colspan="2" th:text="${candidate.cGrade}">17</td>
+                    <th scope="row">班级</th>
+                    <td colspan="2" th:text="${candidate.cClass}">17092712</td>
+                </tr>
+                <tr>
+
+                    <th scope="row">学号</th>
+                    <td colspan="4" th:text="${candidate.cStuentNum}">17905437</td>
+                </tr>
+                <tr>
+                    <th scope="row">院系</th>
+                    <td colspan="2" th:text="${candidate.cCollege}">文学院</td>
+                    <th scope="row">专业</th>
+                    <td colspan="2" th:text="${candidate.cMajor}">汉语言</td>
+                </tr>
+
+
+                </tbody>
+            </table>
+        </div>
+      <!--  <div class="checkInfo mt-4">
+            <div class="custom-control custom-checkbox ">
+                <input type="checkbox" class="custom-control-input" id="customCheckDisabled" onchange="changeState(this.checked)">
+                <label class="custom-control-label" for="customCheckDisabled"><span class="text-danger">*</span>&nbsp;我已检查并确认信息完整无误</label>
+            </div>
+        </div>-->
+        <div class="w-75 mx-auto mt-4">
+        <button class="btn btn-primary " onClick="javascript :history.back(-1);">返回上一步</button>
+        <button class="btn btn-primary " style="float: right;" onclick="Next()" >保存并继续</button>
+        </div>
+    </div >
+</div>
+<div class="foot">
+    <!-- <div class="bottom_left"><img src="../img/logo.jpg"> </div>-->
+    <div class="links">
+        <a href="#">
+            关于考拉
+        </a>
+        |
+        <a href="#">
+            联系我们
+        </a>
+        |
+        <a href="#">
+            人才招聘
+        </a>
+        |
+        <a href="#">
+            广告服务
+        </a>
+        |
+        <a href="#">
+            微信考拉
+        </a>
+        |
+        <a href="#">
+            侵权投诉
+        </a>
+    </div>
+
+    <div class="copyright">
+        Copyright&nbsp;&copy;&nbsp;2004-2019&nbsp;&nbsp;考拉KL.com&nbsp;版权所有
+    </div>
+</div>
+<script>
+    var flag=true,img=null
+    $(document) .ready(function () {
+        $(".info").each(function () {
+
+            if($(this).text()==''){
+                $(this).addClass("text-danger font-small").text("* 必填字段 请前往个人中心填写 *")
+                flag=false
+            }
+        })
+        img= $(".photo").attr("src") //''
+
+
+    })
+
+
+
+
+    function Next() {
+        if(img!=''&&flag==true){
+
+        }else {
+            alert("必填字段必须填写，前往个人中心填写")
+        }
+    }
+</script>
+</body>
+</html>
