@@ -1,6 +1,6 @@
 .contents{
     overflow: hidden;
-    width: 60%;
+    width: 80%;
 }
 .Ti{
     width: 90%;
@@ -13,10 +13,14 @@
     height: 30px;
     border-top: 6px solid limegreen;
 }
+.box{
+    width: 70%;
+    margin: 10px auto;
+    border-right:1px solid gainsboro ;
+}
 .testCard{
-    width: 90%;
-    margin: 20px auto;
-
+    width: 80%;
+    margin: 0px auto;
 }
 .font-st1{
     font-size: 14px;

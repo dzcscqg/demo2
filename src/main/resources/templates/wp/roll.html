@@ -28,6 +28,10 @@
             <a class="titles2 ct" href="/wp/HomePage">首页</a>
 
         </div>
+        <div class="ct account" th:if="${session.nickname}!=null">
+            <span class="names">hi，<a th:text="${session.nickname}" class="out "></a></span>
+            <a href="/wp/logout" class="out ">退出登录</a>
+        </div>
     </nav>
 </div>
 <div class="ntop">
@@ -38,18 +42,19 @@
         <h4 class="text-primary">资格信息确认</h4>
         <hr>
     </div>
-   <!-- <div class="warnInfo">
-        <div class="warnBody">
-            <span class="text-danger font-weight-bold">提示：</span>
-            <br>
-            <span class="font-small">1、如果发现学籍信息有误请勿继续报考,尽快前往个人中心修改或联系相关责任老师。</span><br>
-            <span class="font-small text-danger">2、如果学籍信息不全请前往个人中心填写，学籍信息不完整将不能进行下一步！</span><br>
-            <span class="font-small">3、考试报名成功后信息将不能修改。</span><br>
-            <span class="font-small text-danger">4、如果申请残疾考生合理便利，请在报名成功后，提供相应的证明材料,携带本人二代身份证以及《中华人民共和国残疾人证》及身份证原件和复印件到学校相关部门办理。</span><br>
-            <span class="font-small">5、如果发现学籍信息有误请勿继续报考,尽快前往个人中心修改或联系相关责任老师。</span><br>
-            <span class="font-small">6、如果发现学籍信息有误请勿继续报考,尽快前往个人中心修改或联系相关责任老师。</span><br>
-        </div>
-    </div>-->
+    <!-- <div class="warnInfo">
+         <div class="warnBody">
+             <span class="text-danger font-weight-bold">提示：</span>
+             <br>
+             <span class="font-small">1、如果发现学籍信息有误请勿继续报考,尽快前往个人中心修改或联系相关责任老师。</span><br>
+             <span class="font-small text-danger">2、如果学籍信息不全请前往个人中心填写，学籍信息不完整将不能进行下一步！</span><br>
+             <span class="font-small">3、考试报名成功后信息将不能修改。</span><br>
+             <span class="font-small text-danger">4、如果申请残疾考生合理便利，请在报名成功后，提供相应的证明材料,携带本人二代身份证以及《中华人民共和国残疾人证》及身份证原件和复印件到学校相关部门办理。</span><br>
+             <span class="font-small">5、如果发现学籍信息有误请勿继续报考,尽快前往个人中心修改或联系相关责任老师。</span><br>
+             <span class="font-small">6、如果发现学籍信息有误请勿继续报考,尽快前往个人中心修改或联系相关责任老师。</span><br>
+         </div>
+     </div>-->
+    <!--<h3 class="text-center mb-5">2019上半年CET资格考试</h3>-->
     <div class="accountInfo">
         <div class="float_left infoLeft">
             <img th:src="${candidate.cImage}" class="photo">
@@ -57,12 +62,16 @@
         <div class="float_left infoRight">
             <ul class="list-group">
                 <li class="list-group-item list-none "><span
-                        class="text-info font-weight-bold">姓名：</span><span th:text="${candidate.cName}" class="info">周应祥</span></li>
-                <li class="list-group-item list-none"><span class="text-info font-weight-bold">性别：</span><span th:text="${candidate.cSex}" class="info">男</span>
+                        class="text-info font-weight-bold">姓名：</span><span th:text="${candidate.cName}"
+                                                                           class="info">周应祥</span></li>
+                <li class="list-group-item list-none"><span class="text-info font-weight-bold">性别：</span><span
+                        th:text="${candidate.cSex}" class="info">男</span>
                 </li>
-                <li class="list-group-item list-none"><span class="text-info font-weight-bold">证件类型：</span><span th:text="${candidate.cType}" class="info">中华人民共和国居民身份证</span>
+                <li class="list-group-item list-none"><span class="text-info font-weight-bold">证件类型：</span><span
+                        th:text="${candidate.cType}" class="info">中华人民共和国居民身份证</span>
                 </li>
-                <li class="list-group-item list-none"><span class="text-info font-weight-bold">证件号：</span><span th:text="${candidate.cIdcard}" class="info">5115221998122243313</span>
+                <li class="list-group-item list-none"><span class="text-info font-weight-bold">证件号：</span><span
+                        th:text="${candidate.cIdcard}" class="info">5115221998122243313</span>
                 </li>
             </ul>
         </div>
@@ -71,7 +80,10 @@
         <div class="studyAlter rounded" style="font-size: 14px">
 
             <!--<button class="btn-sm btn btn-light ml-4" onclick=""></button>-->
-           <P><text class="text-danger ml-4">提示：</text>如若以上信息不全将不能进行下一步，请到个人信息中心完善信息。<a  class="badge badge-danger" href="/wp/secret/PersonalMessage">&nbsp;个人中心</a></P>
+            <P>
+                <text class="text-danger ml-4">提示：</text>
+                如若以上信息不全将不能进行下一步，请到个人信息中心完善信息。<a class="badge badge-danger"
+                                                 href="/wp/secret/PersonalMessage">&nbsp;个人中心</a></P>
         </div>
         <div class="studyInfoTable">
             <div class="tableTi rounded">
@@ -87,8 +99,15 @@
 
                 </tr>
                 <tr>
-                    <th scope="row">报名校区(默认)</th>
-                    <td colspan="6" th:text="${candidate.cCollege}" class="info" >信息工程学院</td>
+                    <th scope="row">报名校区<font class="text-danger">(必填)</font></th>
+                    <td colspan="6">
+
+                        <select id="inputCampus" class="form-control border-color w-50">
+                            <option selected>选择校区</option>
+                            <option th:each="item:${campus}" th:text="${item.mName}">杭电</option>
+                        </select>
+
+                    </td>
 
                 </tr>
                 <tr>
@@ -118,18 +137,40 @@
                 </tbody>
             </table>
         </div>
-      <!--  <div class="checkInfo mt-4">
+        <div class="checkInfo mt-4">
             <div class="custom-control custom-checkbox ">
-                <input type="checkbox" class="custom-control-input" id="customCheckDisabled" onchange="changeState(this.checked)">
+                <input type="checkbox" class="custom-control-input" id="customCheckDisabled"
+                       onchange="changeState(this.checked)">
                 <label class="custom-control-label" for="customCheckDisabled"><span class="text-danger">*</span>&nbsp;我已检查并确认信息完整无误</label>
             </div>
-        </div>-->
-        <div class="w-75 mx-auto mt-4">
-        <button class="btn btn-primary " onClick="javascript :history.back(-1);">返回上一步</button>
-        <button class="btn btn-primary " style="float: right;" onclick="Next()" >保存并继续</button>
         </div>
-    </div >
+
+        <div class="w-75 mx-auto mt-4">
+            <button class="btn btn-primary " onClick="javascript :history.back(-1);">返回上一步</button>
+            <button class="btn btn-primary " style="float: right;" id="next" data-toggle="modal">保存并继续</button>
+        </div>
+    </div>
 </div>
+<!--<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+     aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">确认保存</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                此信息关乎您的考试请确保信息准确！
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">关闭</button>
+                <button type="button" class="btn btn-primary" onclick="Next()">保存</button>
+            </div>
+        </div>
+    </div>
+</div>-->
 <div class="foot">
     <!-- <div class="bottom_left"><img src="../img/logo.jpg"> </div>-->
     <div class="links">
@@ -162,31 +203,43 @@
         Copyright&nbsp;&copy;&nbsp;2004-2019&nbsp;&nbsp;考拉KL.com&nbsp;版权所有
     </div>
 </div>
-<script>
-    var flag=true,img=null
-    $(document) .ready(function () {
+<script th:inline="javascript">
+    var flag = true, img = null
+    $(document).ready(function () {
         $(".info").each(function () {
-
-            if($(this).text()==''){
+            if ($(this).text() == '') {
                 $(this).addClass("text-danger font-small").text("* 必填字段 请前往个人中心填写 *")
-                flag=false
+                flag = false
             }
         })
-        img= $(".photo").attr("src") //''
+        img = $(".photo").attr("src")
+    })
+    $(function () {
+        $("#next").click(function () {
+            var str = $("#inputCampus").val()
+            var che=$(".custom-control-input").prop("checked")
+            if (img != '' && flag == true && str != "选择校区") {
+                if(che==true){
+                  /*  $(this).attr("data-target", "#exampleModal")*/
+                    var eId = [[${eId}]]
+                    var str = $("#inputCampus").val()
+                    window.location.href = "/wp/secret/permis?eId=" + eId + "&campus=" + str;
 
+                }else {
+                    alert("请确认勾选")
+                }
 
+            } else {
+                alert("必填字段和图片必须填写，前往个人中心填写")
+            }
+        })
     })
 
-
-
-
-    function Next() {
-        if(img!=''&&flag==true){
-
-        }else {
-            alert("必填字段必须填写，前往个人中心填写")
-        }
-    }
+/*    function Next() {
+        var eId = [[${eId}]]
+        var str = $("#inputCampus").val()
+        window.location.href = "/wp/secret/permis?eId=" + eId + "&campus=" + str;
+    }*/
 </script>
 </body>
 </html>
