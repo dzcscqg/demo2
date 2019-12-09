@@ -1,0 +1,135 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.example.demo.mapper.BranchMapper" >
+  <resultMap id="BaseResultMap" type="com.example.demo.entity.Branch" >
+    <id column="b_id" property="bId" jdbcType="INTEGER" />
+    <result column="e_id" property="eId" jdbcType="INTEGER" />
+    <result column="b_name" property="bName" jdbcType="VARCHAR" />
+    <result column="b_begin" property="bBegin" jdbcType="TIMESTAMP" />
+    <result column="b_end" property="bEnd" jdbcType="TIMESTAMP" />
+    <result column="b_state" property="bState" jdbcType="INTEGER" />
+    <result column="b_remark" property="bRemark" jdbcType="VARCHAR" />
+    <result column="b_price" property="bPrice" jdbcType="DOUBLE" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    b_id, e_id, b_name, b_begin, b_end, b_state, b_remark, b_price
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from branch
+    where b_id = #{bId,jdbcType=INTEGER}
+  </select>
+
+  <select id="selectByEid" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select
+    <include refid="Base_Column_List" />
+    from branch
+    where e_id = #{eId}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from branch
+    where b_id = #{bId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.example.demo.entity.Branch" >
+    insert into branch (b_id, e_id, b_name, 
+      b_begin, b_end, b_state, 
+      b_remark, b_price)
+    values (#{bId,jdbcType=INTEGER}, #{eId,jdbcType=INTEGER}, #{bName,jdbcType=VARCHAR}, 
+      #{bBegin,jdbcType=TIMESTAMP}, #{bEnd,jdbcType=TIMESTAMP}, #{bState,jdbcType=INTEGER}, 
+      #{bRemark,jdbcType=VARCHAR}, #{bPrice,jdbcType=DOUBLE})
+  </insert>
+  <insert id="insertSelective" parameterType="com.example.demo.entity.Branch" >
+    insert into branch
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="bId != null" >
+        b_id,
+      </if>
+      <if test="eId != null" >
+        e_id,
+      </if>
+      <if test="bName != null" >
+        b_name,
+      </if>
+      <if test="bBegin != null" >
+        b_begin,
+      </if>
+      <if test="bEnd != null" >
+        b_end,
+      </if>
+      <if test="bState != null" >
+        b_state,
+      </if>
+      <if test="bRemark != null" >
+        b_remark,
+      </if>
+      <if test="bPrice != null" >
+        b_price,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="bId != null" >
+        #{bId,jdbcType=INTEGER},
+      </if>
+      <if test="eId != null" >
+        #{eId,jdbcType=INTEGER},
+      </if>
+      <if test="bName != null" >
+        #{bName,jdbcType=VARCHAR},
+      </if>
+      <if test="bBegin != null" >
+        #{bBegin,jdbcType=TIMESTAMP},
+      </if>
+      <if test="bEnd != null" >
+        #{bEnd,jdbcType=TIMESTAMP},
+      </if>
+      <if test="bState != null" >
+        #{bState,jdbcType=INTEGER},
+      </if>
+      <if test="bRemark != null" >
+        #{bRemark,jdbcType=VARCHAR},
+      </if>
+      <if test="bPrice != null" >
+        #{bPrice,jdbcType=DOUBLE},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.example.demo.entity.Branch" >
+    update branch
+    <set >
+      <if test="eId != null" >
+        e_id = #{eId,jdbcType=INTEGER},
+      </if>
+      <if test="bName != null" >
+        b_name = #{bName,jdbcType=VARCHAR},
+      </if>
+      <if test="bBegin != null" >
+        b_begin = #{bBegin,jdbcType=TIMESTAMP},
+      </if>
+      <if test="bEnd != null" >
+        b_end = #{bEnd,jdbcType=TIMESTAMP},
+      </if>
+      <if test="bState != null" >
+        b_state = #{bState,jdbcType=INTEGER},
+      </if>
+      <if test="bRemark != null" >
+        b_remark = #{bRemark,jdbcType=VARCHAR},
+      </if>
+      <if test="bPrice != null" >
+        b_price = #{bPrice,jdbcType=DOUBLE},
+      </if>
+    </set>
+    where b_id = #{bId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.example.demo.entity.Branch" >
+    update branch
+    set e_id = #{eId,jdbcType=INTEGER},
+      b_name = #{bName,jdbcType=VARCHAR},
+      b_begin = #{bBegin,jdbcType=TIMESTAMP},
+      b_end = #{bEnd,jdbcType=TIMESTAMP},
+      b_state = #{bState,jdbcType=INTEGER},
+      b_remark = #{bRemark,jdbcType=VARCHAR},
+      b_price = #{bPrice,jdbcType=DOUBLE}
+    where b_id = #{bId,jdbcType=INTEGER}
+  </update>
+</mapper>
