@@ -1,6 +1,7 @@
 package com.example.demo.controller.wp;
 
 import com.example.demo.entity.Exam;
+import com.example.demo.service.CandidateService;
 import com.example.demo.service.ExamService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -15,15 +16,19 @@ import java.util.List;
 public class ExamController {
     @Autowired
     private ExamService examService;
+    @Autowired
+    private CandidateService candidateService;
     @RequestMapping("Exam")
     public String  Exam(Model model, HttpSession httpSession){
-        String account=(String) httpSession.getAttribute("account");
 
+        String account =(String)httpSession.getAttribute("account");
         if(account==null){
             httpSession.setAttribute("sign","si");
             return "redirect:login";
         }else{
-            List<Exam> exams=examService.selectAllWhereState();
+            int keys=(int) httpSession.getAttribute("keys");
+            List<Exam> exams=examService.selectAllByStateAndAccount(keys);
+
             model.addAttribute("exam",exams);
             return "wp/Exam";
 

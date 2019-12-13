@@ -29,7 +29,7 @@
     from exam
   </select>
   <select id="selectAllWhereState" resultMap="BaseResultMap">
-    select
+   select
     <include refid="Base_Column_List" />
     from exam
     where e_state=1

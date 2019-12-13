@@ -1,0 +1,355 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>考试报名</title>
+    <link rel="stylesheet" href="/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="/css/WpExam.css"/>
+    <link rel="stylesheet" type="text/css" href="/css/wpNav.css"/>
+    <link rel="stylesheet" type="text/css" href="/css/wpFoot.css"/>
+    <link rel="stylesheet" type="text/css" href="/css/leftMenu.css"/>
+    <link rel="stylesheet" type="text/css" href="/fontawesome/css/all.css"/>
+    <script type="text/javascript" src="/js/jquery-3.3.1.min.js"></script>
+    <script src="/dist/js/bootstrap.min.js"></script>
+    <style>
+
+
+        .main-p {
+            width: 64%;
+           margin-top: 20px;
+            margin-left: 180px;
+            padding: 4%;
+            border: 1px solid gainsboro;
+            background: white;
+        }
+
+        .left-p {
+            float: right;
+        }
+
+        body {
+            padding: 0px;
+            margin: 0px;
+        }
+
+        body {
+            padding: 0px;
+            margin: 0px;
+        }
+
+        .containers {
+            width: 100%;
+            height: 1400px;
+
+        }
+
+        .navbar-brand {
+            padding: 0px;
+            height: 60px;
+            line-height: 60px;
+            padding-left: 70px;
+        }
+
+        .navbar-brand img {
+            display: block;
+        }
+
+        .navbar.navbar-light.bg-light {
+            border: none;
+            height: 60px;
+            background-color: white !important;
+            margin: 0px !important;
+            padding: 0px !important;
+            display: block;
+        }
+
+        .top {
+            height: 61px;
+            width: 100%;
+            border-bottom: 1px solid #E4E4E4;
+
+        }
+
+        .ct {
+            float: left;
+        }
+
+        .logo {
+            width: 15%;
+
+        }
+
+        .x {
+            width: 80%;
+
+            text-align: left;
+            font-size: 24px;
+            color: midnightblue;
+            padding-top: 10px;
+            padding-bottom: 10px;
+        }
+
+        .nava a {
+            padding: 0px !important;
+            margin-right: 80px;
+            color: midnightblue !important;
+
+            font-size: 14px;
+        }
+
+        .carousel-item img {
+            width: 100%;
+            height: 412px;
+
+        }
+
+        .checkInfo {
+            width: 100%;
+            height: 50px;
+            background: whitesmoke;
+        }
+
+        .custom-checkbox {
+            padding-top: 10px !important;
+            padding-left: 30% !important;
+        }
+
+        .warnInfo {
+            overflow: hidden;
+            margin: 10px auto;
+            background: lightskyblue;
+        }
+
+        .warnBody {
+            width: 90%;
+            overflow: hidden;
+            padding-top: 20px;
+            margin: 20px auto;
+
+        }
+
+        li {
+            list-style: none;
+        }
+    </style>
+</head>
+<body>
+<div class="top">
+    <nav class="navbar navbar-light bg-light">
+        <div class="logo ct">
+            <a class="navbar-brand" href="#">
+                <img alt="Brand" src="/img/logo5.png" width="120px" height="60px">
+            </a>
+        </div>
+        <div class="titles ct ">
+
+            <a class="titles1 ct">考拉报名系统</a>
+            <a class="ct">|</a>
+            <a class="titles2 ct" href="/wp/HomePage">首页</a>
+
+        </div>
+        <div class="ct account" th:if="${session.nickname}!=null">
+            <span class="names">hi，<a th:text="${session.nickname}" class="out "></a></span>
+            <a href="/wp/logout" class="out ">退出登录</a>
+        </div>
+    </nav>
+</div>
+<div class="ntop">
+    <a>首页</a> ><a>考试报名-step3</a>
+
+</div>
+<div class="card abso border border-info" style="width: 14rem;">
+    <div  class="text-center menu-min" >
+        <a class="text-info"><i class="fas fa-server mr-2 " ></i>考生服务</a>
+    </div>
+    <hr class="underlines mx-auto">
+    <ul class="nav flex-column text-center">
+        <li class="nav-item">
+            <a class="nav-link text-info" href="/wp/Exam"><i class="fas fa-sign mr-2"></i>考试报名</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link text-info" href="/wp/secret/MyTest"><i class="fas fa-calendar mr-2 " ></i>我的考试</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link text-info" href="#"><i class="fas fa-search mr-2"></i>成绩查询</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link text-info" href="/wp/secret/PersonalMessage"><i class="fas fa-user mr-2"></i>个人中心</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link text-info" href="#"><i class="fas fa-book mr-2"></i>考试大纲</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link text-info" href="#"><i class="fas fa-info-circle mr-2"></i>考试咨询</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link text-info" href="#"><i class="fas fa-question-circle mr-2"></i>常见问题</a>
+        </li>
+    </ul>
+</div>
+
+<div class="main-p">
+    <h2 class="text-center">报考须知</h2>
+    <div class="warnInfo ">
+        <div class="warnBody">
+            <li class="text-danger">1、您只能选择一个考试科目。</li>
+            <li>
+                2、考试当日考生须携带相应级别准考证、报考时所使用的身份证件，按规定时间到达准考证上指定的考场。笔试上午8：45开始禁止迟到考生进入考场；口试上午9：00、下午2：00开始禁止迟到考生进入口试候考室（考场）。
+            </li>
+            <li>
+                3、考生入场时应配合监考教师完成身份核对：在考场签到表相应位置签字，按考点要求将与考试无关物品放置在指定位置。证件携带不齐全、不配合监考教师完成身份核对或身份核对未通过，拒绝签到、拒绝将与考试无关物品放置在指定位置的考生不得进入考场。
+            </li>
+            <li>
+                4、考生只准携带必要的文具进入考场（候考室），如2B铅笔(涂答题卡用)、签字笔、橡皮；考生禁止携带任何书籍、笔记、资料、报刊、草稿纸以及各种无线通信工具（如移动电话、智能手表）、录、放音机、电子记事本等物品进入考场（候考室）。口试考生可在候考室阅读纸质材料，但不得带入考场。
+            </li>
+
+        </div>
+    </div>
+
+    <h2 class="text-center">笔试考试</h2>
+    <br>
+    <table class="table table-bordered  table-striped">
+
+        <thead>
+        <tr>
+            <th scope="col">选择</th>
+            <th scope="col">科目</th>
+
+            <th scope="col">报考学校</th>
+            <th scope="col">报考校区</th>
+            <th scope="col">考试日期</th>
+            <th scope="col">价格(RMB)</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="item:${branch}">
+            <td><input type="checkbox" class="checks" th:data-id="${item.bId}" th:data-eid="${item.eId}"></td>
+
+            <td th:text="${item.bName}" class="bg-success text-light">四级网络工程师</td>
+            <td th:text="${school}" class="bg-primary text-light">杭电信工学院</td>
+            <td th:text="${campus}" class="bg-warning text-light">杭电信工学院</td>
+            <td th:text="${#dates.format(item.bBegin,'yyyy-MM-dd HH:mm')}" class="bg-info text-light"> 2019-12-04
+                14:30:00
+            </td>
+
+            <td th:text="${item.bPrice}" class="bg-danger text-light">5.00</td>
+        </tr>
+
+        </tbody>
+    </table>
+    <div class="checkInfo mt-4">
+        <div class="custom-control custom-checkbox ">
+            <input type="checkbox" class="custom-control-input" id="customCheckDisabled">
+            <label class="custom-control-label" for="customCheckDisabled"><span class="text-danger">*</span>&nbsp;我已阅读并同意<a
+                    href="http://www.baidu.com">《报考协议和考试须知》</a></label>
+        </div>
+    </div>
+
+
+    <div class="form-group mt-4 text-center">
+      <!--  <button class="btn btn-dark" onClick="javascript :history.back(-1);">返回上一步</button>-->
+        <button class="btn btn-success m-2" onclick="pay()">下一步：支付</button>
+        <button class="btn btn-primary m-2" onclick="save()">保存</button>
+    </div>
+    </form>
+
+</div>
+<div class="foot">
+    <!-- <div class="bottom_left"><img src="../img/logo.jpg"> </div>-->
+    <div class="links">
+        <a href="#">
+            关于考拉
+        </a>
+        |
+        <a href="#">
+            联系我们
+        </a>
+        |
+        <a href="#">
+            人才招聘
+        </a>
+        |
+        <a href="#">
+            广告服务
+        </a>
+        |
+        <a href="#">
+            微信考拉
+        </a>
+        |
+        <a href="#">
+            侵权投诉
+        </a>
+    </div>
+
+    <div class="copyright">
+        Copyright&nbsp;&copy;&nbsp;2004-2019&nbsp;&nbsp;考拉KL.com&nbsp;版权所有
+    </div>
+</div>
+<script th:inline="javascript">
+    var flag;
+    var id ,e_id
+    /*同一个url*/
+    function pay() {
+        checkInfo()
+
+        if (flag == false) {
+            alert("请选择一门考试科目")
+            return 0;
+        } else if ($(".custom-control-input").prop("checked") == false) {
+            alert("请阅读协议")
+            return 0;
+        }
+        window.location.href = "/wp/secret/payOrSave?bid=" + id+"&eid="+e_id+"&sign="+1;
+    }
+    $(document).ready(function () {
+        var msg=[[${msg}]]
+        if(msg!=null){
+            alert(msg)
+         /*   setTimeout(function(){
+                window.location.href="/wp/secret/MyTest"
+            },1000);
+*/
+        }
+    })
+    function save() {
+        checkInfo()
+
+        if (flag == false) {
+            alert("请选择一门考试科目")
+            return 0;
+        } else if ($(".custom-control-input").prop("checked") == false) {
+            alert("请阅读协议")
+            return 0;
+        }
+        window.location.href = "/wp/secret/payOrSave?bid=" + id+"&eid="+e_id+"&sign="+2;
+    }
+
+
+
+    $(function () {
+        $(".checks").change(function () {
+            //$("input").prop("checked") == true or false
+            if ($(this).prop("checked") == true) {
+                $(".checks").not(this).prop("checked", false)
+            }
+
+        })
+    })
+    function checkInfo() {
+        flag = false
+        id=0;
+        e_id=0
+        $(".checks").each(function () {
+            if ($(this).prop("checked") == true) {
+                id = $(this).attr("data-id")
+                e_id=$(this).attr("data-eid")
+                flag = true;
+
+            }
+        })
+    }
+</script>
+
+</body>
+</html>

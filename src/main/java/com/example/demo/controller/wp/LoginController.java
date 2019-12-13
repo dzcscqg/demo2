@@ -36,7 +36,7 @@ public class LoginController {
                 return "redirect:login";
             }else{
                 /*登录成功*/
-                request.getSession().setAttribute("account",account);
+                request.getSession().setAttribute("account",candidate.getcTelephone());
                 request.getSession().setAttribute("nickname",candidate.getcNickname());
                 request.getSession().setAttribute("keys",candidate.getcId());
                 String sign=(String) request.getSession().getAttribute("sign");

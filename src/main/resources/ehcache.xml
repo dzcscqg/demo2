@@ -40,6 +40,25 @@
             memoryStoreEvictionPolicy="LRU"/>
 
     <cache
+            name="exam"
+
+            eternal="false"
+
+            maxElementsInMemory="100"
+
+
+            overflowToDisk="false"
+
+            diskPersistent="false"
+
+            timeToIdleSeconds="0"
+
+            timeToLiveSeconds="1800"
+            statistics="true"
+
+            memoryStoreEvictionPolicy="LRU"/>
+
+    <cache
             name="auth"
 
             eternal="false"
