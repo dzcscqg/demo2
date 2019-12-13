@@ -1,0 +1,24 @@
+.contents{
+    overflow: hidden;
+    width: 60%;
+}
+.Ti{
+    width: 90%;
+    margin: 0 auto;
+    font-size: 24px;
+    border-left: 10px solid blue;
+
+}
+.empty{
+    height: 30px;
+    border-top: 6px solid limegreen;
+}
+.testCard{
+    width: 90%;
+    margin: 20px auto;
+
+}
+.font-st1{
+    font-size: 14px;
+    color: grey;
+}

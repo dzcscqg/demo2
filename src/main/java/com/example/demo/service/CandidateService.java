@@ -3,6 +3,7 @@ package com.example.demo.service;
 import com.example.demo.entity.Admin;
 import com.example.demo.entity.Candidate;
 import com.example.demo.mapper.CandidateMapper;
+import com.sun.org.apache.regexp.internal.RE;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -48,6 +49,20 @@ public class CandidateService {
         return candidateMapper.WpLogin(account,pwd);
     }
 
+    public int updateByPrimaryKeySelective(Candidate candidate){
+        return  candidateMapper.updateByPrimaryKeySelective(candidate);
+    }
+    public Candidate selectByCard(String card){
+        return candidateMapper.selectByCard(card);
+    }
+
+    public Candidate selectByAccount(String account){
+
+        return candidateMapper.selectByAccount(account);
+    }
+    public String selectByPrimaryKeyToPwd(int cId){
+        return candidateMapper.selectByPrimaryKeyToPwd(cId);
+    }
     public String getNickname(String account){
         return candidateMapper.selectToNickname(account);
     }

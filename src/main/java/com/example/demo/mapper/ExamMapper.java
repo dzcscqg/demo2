@@ -19,4 +19,6 @@ public interface ExamMapper {
     int updateByPrimaryKey(Exam record);
 
     List<Exam> selectAll();
+
+    List<Exam> selectAllWhereState();
 }

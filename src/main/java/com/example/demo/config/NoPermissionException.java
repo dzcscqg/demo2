@@ -8,6 +8,7 @@ import org.apache.shiro.authz.UnauthenticatedException;
 import org.apache.shiro.authz.UnauthorizedException;
 import org.apache.shiro.crypto.CryptoException;
 import org.springframework.http.HttpStatus;
+import org.springframework.web.HttpRequestMethodNotSupportedException;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ResponseStatus;
@@ -23,19 +24,43 @@ import javax.naming.AuthenticationException;
 @ControllerAdvice
 public class NoPermissionException {
     @ResponseStatus(value = HttpStatus.FORBIDDEN)
-    @ExceptionHandler(UnauthorizedException.class)
+    @ExceptionHandler(UnauthenticatedException.class)
     public String handleShiroException(Exception ex) {
-        System.out.println(ex.getMessage());
         System.out.println("没有此权限！");
         return "error/403";
     }
 
 
-    @ExceptionHandler(ConcurrentAccessException.class)
+ /*   @ExceptionHandler(ConcurrentAccessException.class)
     public String handleException2(AuthorizationException e) {
         System.out.println(e.getMessage());
         return "error/403";
+    }*/
+
+   /* @ExceptionHandler(UnauthorizedException.class)
+    public String handleException3(AuthorizationException e) {
+        System.out.println("你的级别还不够高,加油吧！少年。");
+        return "error/403";
     }
+
+    @ExceptionHandler(ConcurrentAccessException.class)
+    public String handleException4(AuthorizationException e) {
+        System.out.println("我勒个去，页面被外星人挟持了!");
+        return "error/403";
+    }
+
+    @ExceptionHandler(HttpRequestMethodNotSupportedException.class)
+    public String handleException5(AuthorizationException e) {
+        return "error/405";
+    }
+    @ExceptionHandler(HttpRequestMethodNotSupportedException.class)
+    public String handleException6(AuthorizationException e) {
+        return "error/404";
+    }
+    @ExceptionHandler(HttpRequestMethodNotSupportedException.class)
+    public String handleException7(AuthorizationException e) {
+        return "error/500";
+    }*/
 
 /*    @ExceptionHandler(AuthenticationException.class)
     public String chu(){

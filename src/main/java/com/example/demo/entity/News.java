@@ -3,17 +3,36 @@ package com.example.demo.entity;
 import lombok.ToString;
 
 import java.util.Date;
+
 @ToString
 public class News {
     private Integer nId;
 
     private String nTitle;
 
-    private String nLink;
-
     private Date nDate;
 
     private String nText;
+
+    private Date nDateModified;
+
+    private int nStatus;
+
+    public Date getnDateModified() {
+        return nDateModified;
+    }
+
+    public void setnDateModified(Date nDateModified) {
+        this.nDateModified = nDateModified;
+    }
+
+    public int getnStatus() {
+        return nStatus;
+    }
+
+    public void setnStatus(int nStatus) {
+        this.nStatus = nStatus;
+    }
 
     public Integer getnId() {
         return nId;
@@ -29,14 +48,6 @@ public class News {
 
     public void setnTitle(String nTitle) {
         this.nTitle = nTitle == null ? null : nTitle.trim();
-    }
-
-    public String getnLink() {
-        return nLink;
-    }
-
-    public void setnLink(String nLink) {
-        this.nLink = nLink == null ? null : nLink.trim();
     }
 
     public Date getnDate() {
