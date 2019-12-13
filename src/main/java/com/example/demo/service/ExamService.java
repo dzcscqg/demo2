@@ -36,7 +36,7 @@ public class ExamService {
             while (it.hasNext()){
                 Exam exam=(Exam) it.next();
                 for(int i=0;i<permisList.size();i++){
-                    if(exam.getEId().equals(permisList.get(i).geteId())&&permisList.get(i).getpState()>0){
+                    if(exam.getEId().equals(permisList.get(i).geteId())){
                         it.remove();
                     }
                 }

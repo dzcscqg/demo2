@@ -1,0 +1,703 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>考试报名</title>
+    <link rel="stylesheet" type="text/css" href="/dist/css/bootstrap.min.css"/>
+    <link rel="stylesheet" type="text/css" href="/css/wpTop.css"/>
+    <link rel="stylesheet" type="text/css" href="/css/wpNav.css"/>
+    <link rel="stylesheet" type="text/css" href="/css/wpFoot.css"/>
+    <link rel="stylesheet" type="text/css" href="/fontawesome/css/all.css"/>
+    <link rel="stylesheet" type="text/css" href="/css/WpRollCentent.css"/>
+
+    <style>
+
+
+        .navbar.navbar-default.navbar-fixed-top {
+            border: none;
+            height: 60px;
+            line-height: 60px !important;
+            margin: 0px;
+
+        }
+
+
+        .top {
+            height: 60px;
+
+        }
+
+        .ct {
+            float: left;
+        }
+
+        .navbar-brand {
+            padding: 0px;
+            height: 60px;
+            line-height: 60px;
+
+        }
+
+        .nava{
+            width: 14%;
+        }
+        .nava a {
+            padding: 0px !important;
+            text-align: center;
+            color: midnightblue !important;
+
+            font-size: 14px;
+        }
+
+
+
+        .dropdown:hover .dropdown-content {
+            display: block;
+        }
+
+        .dropdown-content span a {
+            padding: 0px !important;
+            margin-right: 10px;
+        }
+
+
+
+
+
+        .newlist li{
+            height: 30px;
+        }
+
+
+
+        .fun4-title img{
+            height: 50px;
+            width: 50px;
+            margin-left: 34px   ;
+            margin-top:20px;
+        }
+        .fun4-title h3{
+            margin-top:30px;
+            margin-left: 7px
+        }
+
+        .list1 tr{
+            height: 20px;
+        }
+        .list1 tr td{
+            text-align: center;
+
+        }
+
+
+
+        .fun1-title img{
+            width:50px;
+            height:50px;
+            margin-left:7%;
+
+        }
+        .fun1-title h3{
+            line-height: 3px;
+            font-size: 22px;
+            margin-left: 6px;
+        }
+        .fun2-title img{
+            width:50px;
+            height:50px;
+            margin-left:7%;
+
+        }
+        .fun2-title h3{
+            margin-left: 6px;
+            line-height: 3px;
+            font-size: 22px;
+        }
+        .fun3-title img{
+            width:50px;
+            height:50px;
+            margin-left:7%;
+
+        }
+        .fun3-title h3{
+            margin-left: 6px;
+            line-height: 3px;
+            font-size: 22px;
+        }
+
+        .main-p{
+            width: 60%;
+            margin: 10px auto;
+            padding: 4%;
+            border: 1px solid gainsboro;
+            background: white;
+        }
+        .left-p{
+            float: right;
+        }
+        body{
+            padding: 0px;
+            margin: 0px;
+        }
+
+
+
+        .navbar-brand {
+            padding: 0px;
+            height: 60px;
+            line-height: 60px;
+            padding-left: 70px;
+        }
+
+        .navbar-brand img {
+            display: block;
+        }
+
+        .navbar.navbar-light.bg-light {
+            border: none;
+            height: 60px;
+            background-color: white!important;
+            margin: 0px !important;
+            padding: 0px !important;
+            display: block;
+        }
+
+        .top {
+            height: 61px;
+            width: 100%;
+            border-bottom: 1px solid #E4E4E4;
+
+        }
+        .ntop{
+            height: 30px;
+            width: 100%;
+            font-size: 14px;
+            line-height: 30px;
+            color: #31708f;
+        }
+        .ct {
+            float: left;
+        }
+
+        .logo {
+            width: 15%;
+
+        }
+
+        .x {
+            width: 80%;
+
+            text-align: left;
+            font-size: 24px;
+            color: midnightblue;
+            padding-top: 10px;
+            padding-bottom: 10px;
+        }
+
+        .nava a {
+            padding: 0px !important;
+            margin-right: 80px;
+            color: midnightblue !important;
+
+            font-size: 14px;
+        }
+        .carousel-item img{
+            width: 100%;
+            height: 412px;
+
+        }
+        h2{
+            text-shadow: 5px 5px 5px #1a6eff;
+            text-align: center;
+        }
+
+        .author_img{
+            margin-top: 20px;
+            width: 150px;
+            margin:auto;
+        }
+
+
+        .author_img img{
+            width: 150px;
+            border:solid 1px #ccc;
+            border-radius: 4px;
+        }
+
+
+        .author_desc{
+            text-align: center;
+            border:solid 1px #ccba1c;
+            border-radius: 7px;
+            background-color: #01d8ee;
+            padding-top:16px;
+            padding-bottom: 15px;
+            margin-top: 10px;
+            margin-bottom: 16px;
+        }
+
+
+        .author_desc h4{
+            margin:0;
+            margin-bottom: 10px;
+        }
+
+
+        .author_desc p{
+            margin:0;
+            font-size: 14px;
+            margin-bottom: 10px;
+        }
+
+        .left-p{
+            float: right;
+        }
+        .side{
+            width: 220px;
+            background-color: white ;
+            float: right;
+            padding: 20px;
+            border-radius: 6px;
+            margin-left: 10px;
+            height: 450px;
+        }
+        .site-info{
+            margin-top: 30px;
+            border-top: solid 1px #ccc;/*分界线*/
+        }
+
+
+        .site-info p{
+            font-size: 14px;
+            color: gray;
+            text-align: center;
+            /*padding-left: 60px;/*左填充*/
+            margin:0;
+            margin-top: 10px;
+        }
+
+
+        .site_about p{
+            font-size: 16px;
+            color: white;
+        }
+        #wrapper{
+            margin: auto;
+            width: 960px;
+            margin-top: 20px;
+        }
+        .contents{
+            overflow: hidden;
+            width: 60%;
+        }
+        .Ti{
+            width: 90%;
+            margin: 0 auto;
+            font-size: 24px;
+            border-left: 10px solid blue;
+
+        }
+        .empty{
+            height: 30px;
+            border-top: 6px solid limegreen;
+        }
+        .testCard{
+            width: 90%;
+            margin: 20px auto;
+
+        }
+        .font-st1{
+            font-size: 14px;
+            color: grey;
+        }
+        .copyright {
+            width: 100%;
+            height: 30px;
+            line-height: 30px;
+            text-align: center;
+            font-size: 12px;
+            color: #666;
+        }
+
+        .links {
+            text-align: center;
+            font-size: 12px;
+        }
+
+        .links a {
+            color: #666;
+            margin: 0 10px;
+        }
+        .logo {
+            width: 15%;
+
+        }
+        .navbar.navbar-light.bg-light {
+            border: none;
+            height: 60px;
+            background: whitesmoke !important;
+            margin: 0px !important;
+            padding: 0px !important;
+            display: block;
+        }
+
+        .titles {
+            width: 65%;
+            padding-left: 60px;
+            text-align: left;
+            font-size: 24px;
+
+            line-height: 60px;
+        }
+        .titles a{
+            color: midnightblue!important;
+        }
+        .titles1 {
+            display: block;
+            width: 160px;
+
+        }
+
+        .titles2 {
+            display: block;
+            margin-left: 20px;
+        }
+
+        .top {
+            height: 60px;
+            width: 100%;
+
+        }
+        .navbar-brand {
+            padding: 0px;
+            height: 60px;
+            line-height: 60px;
+            float: right;
+
+
+        }
+        .ct{float: left}
+        .account{
+            width: 20%;
+            line-height: 60PX;
+        }
+        .out{
+            color: midnightblue!important;
+
+        }
+        .ntop{
+            height: 30px;
+            width: 60%;
+            margin: 10px auto;
+            font-size: 14px;
+            line-height: 30px;
+            color: #31708f;
+        }
+        .contents{
+            width: 54%;
+            margin: 20px auto;
+            overflow: hidden;
+            border: 1px solid gainsboro;
+        }
+
+        .contentTi{
+            width: 90%;
+            margin: 10px auto;
+            vertical-align:bottom;
+        }
+        .accountInfo{
+            width: 90%;
+            margin: 10px auto;
+            height: 200px;
+            border: 1px solid #b9bbbe;
+        }
+        .infoLeft{
+            width: 25%;
+
+
+        }
+        .infoRight{
+            width: 75%;
+            font-size: 16px;
+
+        }
+        .photo{
+            display: block;
+            width: 70%;
+            height: 160px;
+            margin: 20px auto;
+        }
+        .warnInfo{
+            height: 260px;
+            width: 90%;
+            margin: 10px auto;
+            background: lightskyblue;
+        }
+        .warnBody{
+            width: 90%;
+            height: 200px;
+            padding-top: 20px;
+            margin: 0 auto;
+
+        }
+        .font-small{
+            font-size: 14px;
+            color:#081485;
+        }
+        .list-none{
+            border: none!important;
+        }
+        .studyInfo{
+            width: 90%;
+            margin: 20px auto;
+
+        }
+        .studyAlter{
+            width: 100%;
+            height: 60px;
+            background: #31b0d5;
+            line-height: 60px;
+            margin: 20px auto;
+
+        }
+        .studyInfoTable{
+            border: 1px solid lightskyblue;
+        }
+        .tableTi{
+            background: deepskyblue;
+            color: white;
+            width: 140px;
+            height: 40px;
+            margin-left: 10px;
+            line-height: 40px;
+            text-align: center;
+            font-size: 20px;
+            -webkit-transform: skew(20deg);
+            -moz-transform: skew(20deg);
+            -o-transform: skew(20deg);
+            transform: skew(-20deg);
+        }
+        .checkInfo{
+            width: 100%;
+            height: 50px;
+
+            background: whitesmoke;
+        }
+        .custom-checkbox{
+            padding-top: 10px!important;
+            padding-left: 30%!important;
+        }
+        .float_left {
+            float: left;
+        }
+        .top {
+            height: 60px;
+            width: 100%;
+        }
+        .inh{
+            width: 60%;
+            height: 60px;
+            text-align: left;
+            font-size: 24px;
+
+            line-height: 60px;
+
+        }
+        .navbar-brand {
+            padding: 0px;
+            height: 60px;
+            line-height: 60px;
+
+        }
+        .container-fluid {
+            width: 15%;
+            height: 60px;
+
+        }
+        .navbar-header{
+            float: right;
+        }
+        .x3{
+            display: block;
+            float: right;
+            margin-right: 30px;
+            color: #191970;
+        }
+        .top_right{
+            width: 25%;
+            height: 60px;
+            line-height: 60px;
+            font-size: 16px;
+
+        }
+        .x {
+            display: block;
+            float: left;
+            margin-left: 20px;
+            color: #191970;
+        }
+
+
+        .conter {
+
+            width: 600px;
+            height: 400px;
+
+            position: absolute;
+            left: 0;
+            top: 0;
+            right: 0;
+            bottom: 0;
+
+            margin: auto; /* 有了这个就自动居中了 */
+        }
+        .foot {
+            margin-top: 0px;
+            width: 100%;
+            height: 100%;
+
+        }
+        .main{
+            width: 640px;
+            background-color: rgba(255, 252, 254, 0);
+            float: left;
+            margin-right:100px;
+            padding: 20px;
+            border-radius: 1px;
+        }
+        h5{
+            color: #1abc9c;
+        }
+    </style>
+</head>
+<body>
+<div class="top">
+    <nav class="navbar navbar-light bg-light">
+        <div class="logo ct">
+            <a class="navbar-brand" href="#">
+                <img alt="Brand" src="/img/logo5.png" width="120px" height="60px">
+            </a>
+        </div>
+        <div class="titles ct ">
+
+            <a class="titles1 ct">考拉报名系统</a>
+            <a class="ct">|</a>
+            <a class="titles2 ct" href="/wp/HomePage">首页</a>
+
+        </div>
+    </nav>
+</div>
+
+    <div id="wrapper">
+        <div class="main">
+            <img src="/img/mark.jpg" width="600px">
+            <br>
+            <br>
+            <br>
+            <h2>杭电考拉（hdkl）-输入查询条件</h2>
+            <br>
+            <form>
+                <div class="form-group xun">
+                    <label> 考试时间</label>
+                    <select id="typeOftime" class="form-control form-select" name="cType">
+                        <option value="0">2019年9月</option>
+                        <option value="1">2019年6月</option>
+                        <option value="2">2019年3月</option>
+                        <option value="3">2019年12月</option>
+                    </select>
+                </div>
+                <div class="form-group xun">
+                    <label> 考试科目</label>
+                    <select id="typeOfkemu" class="form-control form-select" name="cType">
+                        <option value="0">四级网络工程师</option>
+                        <option value="1">四级数据库工程师</option>
+                        <option value="2">四级信息安全工程师</option>
+                        <option value="3">四级嵌入式开发工程师</option>
+                    </select>
+                </div>
+                <div class="form-group xun">
+                    <label for="firstname" class="col-sm-2 control-label">证件号码</label>
+
+                        <input type="text" class="form-control" id="id"
+                               placeholder="请输入证件号码">
+
+                </div>
+                <div class="form-group xun">
+                    <label for="firstname" class="col-sm-2 control-label">姓名</label>
+
+                        <input type="text" class="form-control" id="firstname"
+                               placeholder="请输入姓名">
+
+                </div>
+
+
+                <div class="center-block">
+                    <a href="Mark2"><button type="button" class="btn btn-primary ">查询</button></a>
+                    <button type="submit" class="btn btn-secondary">重填</button>
+                </div>
+            </form>
+
+        </div>
+    </div>
+<div class="card" style="width: 18rem;">
+
+    <div class="card-body">
+        <h5 class="card-title">联系我们</h5>
+        <p class="card-text"><i class="fas fa-envelope mr-2"></i>hdkl@mail.heu.edu.cn</p><br>
+        <p class="card-text"><i class="fas fa-phone-volume mr-2"></i>010-83020302</p><br>
+        <p class="card-text"><i class="fas fa-fighter-jet mr-2"></i>工作日 上午：0830-12-：00</p><br>
+        <p class="card-text">下午：13：00-17：00</p>
+    </div>
+</div>
+<br>
+<br>
+<div class="card" style="width: 18rem;">
+
+    <div class="card-body">
+        <h5 class="card-title">操作说明</h5>
+        <p class="card-text">1.选择考试时间，考试科目。</p><br>
+        <p class="card-text">2.输入考试时的身份证件号码和姓名（证件号码区分大小写），点击查询按钮进行查询。</p><br>
+        <p class="card-text">3.如果输入信息正确，对应考试的成绩信息会在下一个页面列出。</p><br>
+        <p class="card-text">4.页面上部操作中的橘黄色字体内容表示您所处的查询位置。</p><br>
+    </div>
+</div>
+<div class="foot">
+
+    <div class="links">
+        <a href="#">
+            关于考拉
+        </a>
+        |
+        <a href="#">
+            联系我们
+        </a>
+        |
+        <a href="#">
+            人才招聘
+        </a>
+        |
+        <a href="#">
+            广告服务
+        </a>
+        |
+        <a href="#">
+            微信考拉
+        </a>
+        |
+        <a href="#">
+            侵权投诉
+        </a>
+    </div>
+
+    <div class="copyright">
+        Copyright&nbsp;&copy;&nbsp;2004-2019&nbsp;&nbsp;考拉KL.com&nbsp;版权所有
+    </div>
+</div>
+
+
+
+
+
+
+</body>
+</html>

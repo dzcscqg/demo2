@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>打印</title>
+    <link rel="stylesheet" type="text/css" href="/dist/css/bootstrap.min.css"/>
+    <link rel="stylesheet" type="text/css" href="/css/wpTop.css"/>
+    <link rel="stylesheet" type="text/css" href="/css/wpNav.css"/>
+    <link rel="stylesheet" type="text/css" href="/css/wpFoot.css"/>
+    <script type="text/javascript" src="/js/jquery-3.3.1.min.js"></script>
+    <script src="http://www.jq22.com/jquery/jquery-migrate-1.2.1.min.js"></script>
+    <script type="text/javascript" src="/js/jquery.jqprint-0.3.js"></script>
+    <script type="text/javascript" src="/dist/js/bootstrap.min.js"></script>
+</head>
+<style>
+    .content {
+        width: 70%;
+        height: 900px;
+    }
+
+    .print {
+        background: rgb(218, 220, 224);
+        height: 700px;
+        width: 100%;
+        padding: 1px;
+    }
+
+    .adm {
+        background: white;
+        border: 1px dashed black;
+
+
+
+    }
+
+    .left {
+        height: 180px;
+
+        width: 70%;
+    }
+
+    .right {
+        height: 180px;
+
+        width: 20%;
+    }
+
+    .bottoms {
+        clear: both;
+        height: 240px;
+        width: 90%;
+
+
+    }
+
+    .lab {
+        width: 26%;
+    }
+
+    .inputs {
+        width: 68%;
+    }
+
+    .rows {
+        width: 100%
+
+    }
+</style>
+<body>
+<div class="top">
+    <nav class="navbar navbar-light bg-light">
+        <div class="logo ct">
+            <a class="navbar-brand" href="#">
+                <img alt="Brand" src="/img/logo5.png" width="120px" height="60px">
+            </a>
+        </div>
+        <div class="titles ct ">
+
+            <a class="titles1 ct">我的考试任务</a>
+            <a class="ct">|</a>
+            <a class="titles2 ct" href="/wp/HomePage">首页</a>
+
+        </div>
+        <div class="ct account" th:if="${session.nickname}!=null">
+            <span class="names">hi，<a th:text="${session.nickname}" class="out "></a></span>
+            <a href="/wp/logout" class="out ">退出登录</a>
+        </div>
+    </nav>
+</div>
+
+<div class=" content shadow-sm rounded mx-auto mt-4">
+    <div class="print " style="font-size: 12px">
+        <div class="adm " style="border: 1px dashed black; height: 460px;width: 48%; margin: 80px auto;">
+            <div class="left ct">
+
+                <h5 class="text-center mt-4">大学英语四级考试</h5>
+                <h6 class="text-center">准考证</h6>
+                <table class="ml-4 " style="width: 90%;clear: both;font-size: 12px">
+                    <tr style="height: 30px;vertical-align:bottom;">
+                        <td style="width: 30%">准考证号：</td>
+                        <td style="border-bottom: 1px solid black;width: 70%">330374191104219</td>
+                    </tr>
+                 <tr style="height: 30px;vertical-align:bottom">
+                        <td style="width: 30%">考生姓名：</td>
+                        <td style="border-bottom: 1px solid black;width: 70%">周应祥</td>
+                    </tr>
+                    <tr style="height: 30px;vertical-align:bottom">
+                        <td style="width: 30%">证件号码：</td>
+                        <td style="border-bottom: 1px solid black;width: 70%">511522199812243313</td>
+                    </tr>
+                </table>
+            </div>
+
+            <div class="right ct ">
+                <img src="/img/zch.jpg" width="120px" height="150px" style="margin-left: 20px;margin-top: 26px">
+            </div>
+
+
+            <div class="bottoms " style="clear: both;width: 90%;margin: 0px auto; ">
+                <table class="" style="width: 100%;clear: both;font-size: 12px;">
+                    <tr style="height: 30px;vertical-align:bottom;width: 100%">
+                        <td style="width: 14%">考试地点：</td>
+                        <td style="border-bottom: 1px solid black;width: 86%">
+                            <a>2311212213</a>
+                            <a style="float: right">第42考场</a>
+                        </td>
+                    </tr>
+                    <tr style="height: 30px;vertical-align:bottom">
+                        <td style="width: 14%">考试时间：</td>
+                        <td style="border-bottom: 1px solid black;width: 86%">
+                            <a>2019-12-14 9：00</a>
+                            <a style="float: right">第19座位</a>
+                        </td>
+                    </tr>
+                    <tr style="height: 30px;vertical-align:bottom">
+                        <td style="width: 14%">学校名称：</td>
+                        <td style="border-bottom: 1px solid black;width: 86%">杭州电子科技大学</td>
+                    </tr>
+                    <tr style="height: 30px;vertical-align:bottom">
+                        <td style="width: 14%">学校系别：</td>
+                        <td style="border-bottom: 1px solid black;width: 86%">
+                            <a style="margin-right: 10px">信息工程学院</a>
+                            <a style="margin-right: 10px">软件工程</a>
+                            <a style="margin-right: 10px">17</a>
+                            <a style="margin-right: 10px">17092712</a>
+                        </td>
+                    </tr>
+                </table>
+
+
+
+                <div style="margin:30px auto;width: 100%;clear: both">
+                    <div  style="float: left;width: 78%;border-bottom: 2px solid black;margin-left: 22%">
+                    </div>
+                </div>
+
+                <div style="clear: both;width: 100%;">
+                    <div  style="float: left;width: 15%;">
+                        <label>备注：</label>
+                    </div>
+                    <div  style="float: left;width: 85%;font-size: 12px;">
+                           考生只准携带必要的文具进入考场（候考室），如2B铅笔(涂答题卡用)、签字笔、橡皮；考生禁止携带任何书籍、笔记、资料、报刊、草稿纸以及各种无线通信工具（如移动电话、智能手表）、录、放音机、电子记事本等物品进入考场（候考室）。口试考生可在候考室阅读纸质材料，但不得带入考场。
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+        <div class="text-center m-4">
+            <button class="btn btn-outline-secondary">返回</button>
+            <button class="btn btn-outline-info" onclick="print()">打印</button>
+        </div>
+
+    </div>
+
+    <div class="foot" id="f">
+        <div class="links">
+            <a href="#">
+                关于考拉
+            </a>
+            |
+            <a href="#">
+                联系我们
+            </a>
+            |
+            <a href="#">
+                人才招聘
+            </a>
+            |
+            <a href="#">
+                广告服务
+            </a>
+            |
+            <a href="#">
+                微信考拉
+            </a>
+            |
+            <a href="#">
+                侵权投诉
+            </a>
+        </div>
+
+        <div class="copyright">
+            Copyright&nbsp;&copy;&nbsp;2004-2019&nbsp;&nbsp;考拉KL.com&nbsp;版权所有
+        </div>
+    </div>
+
+    <script>
+        function print() {
+
+            $(".print").jqprint()
+        }
+
+
+    </script>
+</body>
+</html>

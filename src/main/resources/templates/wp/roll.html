@@ -9,9 +9,15 @@
     <link rel="stylesheet" type="text/css" href="/css/wpNav.css"/>
     <link rel="stylesheet" type="text/css" href="/css/wpFoot.css"/>
     <link rel="stylesheet" type="text/css" href="/css/WpRollCentent.css"/>
+    <link rel="stylesheet" type="text/css" href="/css/leftMenu.css"/>
+    <link rel="stylesheet" type="text/css" href="/fontawesome/css/all.css"/>
     <script type="text/javascript" src="/js/jquery-3.3.1.min.js"></script>
     <script type="text/javascript" src="/dist/js/bootstrap.min.js"></script>
 </head>
+<style>
+
+
+</style>
 <body>
 
 <div class="top">
@@ -29,15 +35,51 @@
 
         </div>
         <div class="ct account" th:if="${session.nickname}!=null">
+
             <span class="names">hi，<a th:text="${session.nickname}" class="out "></a></span>
             <a href="/wp/logout" class="out ">退出登录</a>
         </div>
     </nav>
 </div>
 <div class="ntop">
-    <a>首页</a> ><a>考试报名-step1</a>
+    <a>首页</a> ><a>考试报名-step2</a>
+
+
 </div>
-<div class="contents">
+<!--
+<div class="card abso border border-info " style="width: 14rem;">
+    <div  class="text-center menu-min" >
+       <a class="text-info"><i class="fas fa-server mr-2 " ></i>考生服务</a>
+    </div>
+<hr class="underlines mx-auto">
+    <ul class="nav flex-column text-center">
+        <li class="nav-item">
+            <a class="nav-link text-primary" href="/wp/Exam"><i class="fas fa-sign mr-2"></i>考试报名</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link text-primary" href="/wp/secret/MyTest"><i class="fas fa-calendar mr-2 " ></i>我的考试</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link text-primary" href="#"><i class="fas fa-search mr-2"></i>成绩查询</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link text-primary" href="/wp/secret/PersonalMessage"><i class="fas fa-user mr-2"></i>个人中心</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link text-primary" href="#"><i class="fas fa-book mr-2"></i>考试大纲</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link text-primary" href="#"><i class="fas fa-info-circle mr-2"></i>考试咨询</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link text-danger" href="#"><i class="fas fa-question-circle mr-2"></i>常见问题</a>
+        </li>
+    </ul>
+</div>
+-->
+
+<div class="contents mx-auto" >
+
     <div class="contentTi">
         <h4 class="text-primary">资格信息确认</h4>
         <hr>

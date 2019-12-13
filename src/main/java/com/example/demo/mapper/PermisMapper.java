@@ -1,5 +1,6 @@
 package com.example.demo.mapper;
 
+import com.example.demo.entity.Order;
 import com.example.demo.entity.Permis;
 import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Repository;
@@ -20,6 +21,7 @@ public interface PermisMapper {
 
     List<Permis> selectByCid(int id);
 
+    List<Order> selectUnite(int id);
 
     int updateByPrimaryKeySelective(Permis record);
 

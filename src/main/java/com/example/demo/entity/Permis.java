@@ -4,6 +4,7 @@ import lombok.ToString;
 import org.springframework.stereotype.Repository;
 
 import java.io.Serializable;
+import java.util.List;
 
 
 @ToString
@@ -37,6 +38,7 @@ public class Permis implements Serializable {
     private Integer pGoal;
 
     private Integer cId;
+
 
     public Integer getpId() {
         return pId;

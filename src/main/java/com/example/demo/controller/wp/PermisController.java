@@ -37,20 +37,12 @@ public class PermisController {
         Candidate candidate = candidateService.selectByAccount(account);
         Permis permis = new Permis();
         if (eId > 0) {
-
-
-            String name = candidate.getcName();
-            String img = candidate.getcImage();
-            String card = candidate.getcIdcard();
-            String school = candidate.getcSchool();
-            String college = candidate.getcCollege();
-
-            if (!name.isEmpty() && !img.isEmpty() && !card.isEmpty() && !campus.isEmpty()) {
-                permis.setpName(name);
-                permis.setpImg(img);
-                permis.setpCard(card);
-                permis.seteSchool(school);
-                permis.seteCollege(college);
+            if (! candidate.getcIdcard().isEmpty() && !campus.isEmpty()) {
+                permis.setpName(candidate.getcName());
+                permis.setpImg(candidate.getcImage());
+                permis.setpCard(candidate.getcIdcard());
+                permis.seteSchool(candidate.getcSchool());
+                permis.seteCollege(candidate.getcCollege());
                 permis.seteId(eId);
                 permis.setpCampus(campus);
                 permis.setcId(keys);
@@ -89,6 +81,7 @@ public class PermisController {
         Permis permis = JSON.parseObject(redisUtil.get(keys + account + eid), Permis.class);
         permis.setpState(2);
         permisService.update(permis);
+        redisUtil.delete(keys + account + eid);
         return "redirect:MyTest";
     }
     @RequestMapping("payOrSave")
@@ -98,19 +91,22 @@ public class PermisController {
         if (i == 0) {
             String account = (String) httpSession.getAttribute("account");
             Permis permis = JSON.parseObject(redisUtil.get(keys + account + eid), Permis.class);
-
             permis.setpState(1);
             permis.setbId(bid);
             permisService.insert(permis);
             redisUtil.set(keys + account + eid,JSON.toJSONString(permis));
+            if (sign == 1) {
+                /*去往支付界面*/
+                return "redirect:pay?id="+bid;
+            } else {
+                /*保存后去往我的考试界面*/
+                return "redirect:MyTest";
+            }
+        }else {
+            model.addAttribute("msg","您已选择了一个科目的考试，请前往我的考试查看详情");
+            return "wp/TestItem";
         }
-        if (sign == 1) {
-            /*去往支付界面*/
-            return "redirect:pay?id="+bid;
-        } else {
-            /*保存后去往我的考试界面*/
-            return "redirect:MyTest";
-        }
+
 
 
     }
