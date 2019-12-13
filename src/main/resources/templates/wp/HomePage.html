@@ -315,7 +315,7 @@
               <ul class="newlist">
                   <li  th:each="item:${news}" ><a th:href="'News/'+${item.nId}" th:text="${item.nTitle}" target="_blank"></a></li>
               </ul>
-                <a class="newM" href="">更多＞＞</a>
+            <a class="newM" th:href="'NewsListPage'" target="_blank">更多＞＞</a>
         </div>
     </div>
 
