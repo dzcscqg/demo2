@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="/css/pageInfo.css">
+    <link rel="stylesheet" href="/css/rcswitcher.min.css">
+    <link rel="stylesheet" href="/dist/css/bootstrap.min.css">
+    <script src="https://cdn.staticfile.org/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://cdn.staticfile.org/popper.js/1.15.0/umd/popper.min.js"></script>
+    <script src="https://cdn.staticfile.org/twitter-bootstrap/4.3.1/js/bootstrap.min.js"></script>
+</head>
+<style>
+    .tjcj{
+        display:inline ; font-size:12px;text-align:center;padding:0px;vertical-align:middle ;line-height:22px;margin:0px;Height:26px;Width:60px;
+    }
+    /*.ta-log-left {*/
+
+        /*width: 93%;*/
+        /*height: 60px;*/
+    /*}*/
+    .which_group {
+        list-style:none;
+        margin:0;
+        padding:0;
+        width:100%;
+        font-size:11px;
+        color:#595959;
+    }
+    .which_group li {
+        float:left;
+        list-style:none;
+        padding:7px;
+        cursor:pointer;
+        box-Shadow:1px 2px 3px #D9D9D9;
+    }
+    /*.which_group li:first-child {*/
+    /*border-top-left-radius:3px;*/
+    /*border-bottom-left-radius:3px;*/
+    /*}*/
+    /*.which_group li:last-child {*/
+    /*border-top-right-radius:3px;*/
+    /*border-bottom-right-radius:3px;*/
+    /*}*/
+
+</style>
+<body>
+<script type="text/javascript" src="/js/jquery-2.1.1.min.js"/>
+<script type="text/javascript" src="/js/rcswitcher.min.js"/>
+
+<h1 class="text-capitalize text-black-50 font-weight-normal">成绩管理</h1>
+<div class="breadcrumb-holder">
+    <div class="container-fluid">
+        <ul class="breadcrumb">
+            <li class="breadcrumb-item"><a href="index.html">系统管理</a></li>
+            <li class="breadcrumb-item active">成绩管理
+            </li>
+        </ul>
+    </div>
+</div>
+<div class="main-u">
+
+    <div style="background-color: gainsboro">
+        <ul id="planeTime" class="which_group" style="width: 99%;" >
+            <li  id="planeTime_0" class="btn  m-sm-1" th:text="${item2.mName}" th:each="item2,start:${campus}" th:data-mid="${item2.mId}">&nbsp;青山湖校区&nbsp;</li>
+            <!--<li id="planeTime_1" class="btn  m-sm-1">&nbsp;下沙校区&nbsp;</li>-->
+            <!--<li id="planeTime_2" class="btn   m-sm-1">&nbsp;紫金港校区&nbsp;</li>-->
+            <!--<li id="planeTime_3" class="btn  m-sm-1">&nbsp;宁波校区&nbsp;</li>-->
+        </ul>
+    </div>
+    <script>
+        $("#planeTime li").click(function () {
+
+            $(this).addClass("btn-primary").siblings().removeClass("btn-primary");
+            $(this).addClass("btn-lg").siblings().removeClass("btn-lg");
+          //  var mid = $(this).attr("data-mid");
+            var mname = $(this).text()
+            console.log(mname)
+           // console.log(mid)
+            $("#contents").load("/bs/grade?mname="+mname);
+            sessionStorage.setItem("url","/bs/grade")
+
+
+        })
+    </script>
+    <table class="table table-striped">
+        <thead>
+        <tr>
+            <th scope="col">
+                <input type="checkbox" class="checkbox-all">
+
+            </th>
+            <th scope="col">姓名</th>
+            <th scope="col">身份证</th>
+            <th scope="col">准考证</th>
+            <th scope="col">校区</th>
+            <th scope="col">操作</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="item,start:${permis}" th:data-tid="${item.pId}">
+            <th scope="row">
+                <input type="checkbox" class="checkbox-to-all">
+            </th>
+            <!--th:data-tId="${item.tId}}"-->
+            <!--<td th:text="${item.tId}">考号</td>-->
+            <td th:text="${item.pName}" class="info">考场号</td>
+            <td th:text="${item.pCard}" class="info">身份证</td>
+            <td th:text="${item.pNum}" class="info">@准考证</td>
+            <td th:text="${item.pCampus}" class="info">校区</td>
+            <td>
+               <input type="text" class="form-control thegrade" id="inputPassword2" placeholder="请输入学生成绩" style="display:inline;width: 125px ;height: 30px">
+
+                <button type="submit" class="btn btn-primary tjcj" th:onclick="'getpid(\''+@{${item.pId}}+'\')'">提交成绩</button>
+
+            </td>
+        </tr>
+        </tbody>
+    </table>
+    <div class="tab-f">
+        <ul class="logsUl">
+            <li>共 &nbsp;<a th:text="${pageInfo.total}"></a>&nbsp;条</li>
+            <li>|</li>
+            <li>每页&nbsp;5&nbsp;条</li>
+            <li>|</li>
+            <li>共&nbsp;<a th:text="${pageInfo.pages}"></a>&nbsp;页</li>
+        </ul>
+
+        <nav aria-label="Page navigation example" class="nav-page">
+            <button type="button" id="first" class="btn btn-outline-primary ct btn-sm"
+                    th:onclick="'jump(\''+@{/bs/grade}+'\')'">首页
+            </button>
+            <ul class="pagination pagination-sm ct">
+                <li class="page-item" id="up"
+                    th:onclick="'jump(\''+@{/bs/grade(pageNum=${pageInfo.hasPreviousPage}?${pageInfo.prePage}:1)}+'\')'" >
+                    <a class="page-link" href="#" aria-label="Previous">
+                        <span aria-hidden="true">&laquo;</span>
+                        <span class="sr-only">Previous</span>
+                    </a>
+                </li>
+                <li class="page-item active"><a class="page-link" href="#"
+                                                th:text="${pageInfo.pageNum}">1</a></li>
+
+                <li class="page-item" id="next"
+                    th:onclick="'jump(\''+@{/bs/grade(pageNum=${pageInfo.hasNextPage}?${pageInfo.nextPage}:${pageInfo.pages})}+'\')'">
+                    <a class="page-link" href="#" aria-label="Next">
+                        <span aria-hidden="true">&raquo;</span>
+                        <span class="sr-only">Next</span>
+                    </a>
+                </li>
+            </ul>
+            <button type="button" id="last" class="btn btn-outline-primary ct btn-sm"
+                    th:onclick="'jump(\''+@{/bs/grade(pageNum=${pageInfo.pages})}+'\')'">尾页
+            </button>
+        </nav>
+    </div>
+</div>
+
+<script>
+    var pid;
+    $(".tjcj").click(function () {
+        var grade= $(this).prev(".thegrade").val()
+       // console.log(pid)
+       // console.log(grade)
+        $.ajax({
+            url:"/bs/insertgrade",
+            type:"GET",
+            dataType:"text",
+            contentType:"application/json",
+            data:{"pid":pid,"grade":grade
+            },
+            success:function (m) {
+                if(m==1){
+                    $("#contents").load("/bs/grade") /*都用这个*/
+                }else if(m==0){
+                    console.log("454654dfds5f4fds6fds6")
+                }else{
+                    Toast("你的级别还不够高,加油吧！少年。","2000")
+                }
+            }
+
+        })
+        // $("#contents").load("/bs/insertgrade?grade="+grade+"&pid"+pid);
+        // sessionStorage.setItem("url","/bs/insertgrade");
+    })
+    function getpid(e) {
+        pid = e;
+    }
+    function jump(url){
+        $("#contents").load(url)
+        sessionStorage.setItem("url",url)
+    }
+</script>
+
+</body>
+</html>

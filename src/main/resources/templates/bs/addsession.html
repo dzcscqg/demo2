@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<style>
+
+</style>
+<body>
+<h1 class="text-capitalize text-black-50 font-weight-normal">用户管理</h1>
+<div class="breadcrumb-holder">
+    <div class="container-fluid">
+        <ul class="breadcrumb">
+            <li class="breadcrumb-item"><a href="index.html">系统管理</a></li>
+            <li class="breadcrumb-item active">用户管理</li>
+            <li class="breadcrumb-item active">添加用户</li>
+        </ul>
+    </div>
+</div>
+<div class="common-3">
+    <form>
+        <div class="form-group col-md-8">
+            <label for="kchao">考场号</label>
+            <input type="text" class="form-control " id="kchao"  placeholder="考场号">
+        </div>
+        <div class="form-group col-md-8">
+            <label for="kcdz">考试地址</label>
+            <input type="text" class="form-control " id="kcdz"  placeholder="考试地址">
+        </div>
+
+        <div class="form-group col-md-8">
+            <label for="kcyyrs">考场已有人数</label>
+            <input type="text" class="form-control " id="kcyyrs"  placeholder="考场已有人数">
+        </div>
+        <!--<div class="dropdown">-->
+            <!--<label for="xzxq">选择校区</label>-->
+            <!--&lt;!&ndash;<button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">&ndash;&gt;-->
+            <!--&lt;!&ndash;选择校区&ndash;&gt;-->
+        <!--&lt;!&ndash;</button>&ndash;&gt;-->
+            <!--&lt;!&ndash;<div class="dropdown-menu" aria-labelledby="dropdownMenuButton">&ndash;&gt;-->
+                <!--&lt;!&ndash;<a class="dropdown-item" href="#">青山湖校区</a>&ndash;&gt;-->
+                <!--&lt;!&ndash;<a class="dropdown-item" href="/dist/css/bootstrap.min.css">文一校区</a>&ndash;&gt;-->
+                <!--&lt;!&ndash;<a class="dropdown-item" href="/dist/css/bootstrap.min.css">下沙校区</a>&ndash;&gt;-->
+                <!--&lt;!&ndash;<a class="dropdown-item" href="/dist/css/bootstrap.min.css">东岳校区</a>&ndash;&gt;-->
+            <!--&lt;!&ndash;</div>&ndash;&gt;-->
+        <!--</div>-->
+        <div class="form-group col-md-4">
+            <label for="xzxq">选择校区</label>
+            <select id="xzxq" class="form-control">
+                <option th:each="item:${campuses}" th:id="${item.mId}" th:text="${item.mName}" >超级管理员</option>
+            </select>
+        </div>
+
+        <div class="col-md-6">
+            <button type="button" class="btn btn-default  btn-len"><a href="javascript:history.back(-1)">返回</a> </button>
+            <button type="button" class="btn btn-primary btn-len">添加考场</button>
+        </div>
+    </form>
+</div>
+
+    <script type="text/javascript" src="/js/jquery-2.1.1.min.js"/>
+        <script type="text/javascript" src="/js/rcswitcher.min.js"/>
+<script>
+
+
+    // $(".returnsession").click(function () {
+    //     onclick="javascript:history.back(-1);"
+    // })
+
+
+
+    $(function () {
+        $(".btn-primary").click(function () {
+         var k1 = $("#kchao").val();
+         var k2= $("#kcdz").val();
+         var k3 = $("#kcyyrs").val();
+         var k4 = $("#xzxq").find("option:selected").attr("id");
+         console.log(k4)
+           // console.log(k1)
+           // console.log(k2)
+            $.ajax({
+                url:"/bs/sessionAdd",
+                type:"get",
+                contentType:"application/json",
+                data:{"kch":k1,"kcdz":k2,"kcrs":k3,"xzxq":k4},
+                success:function (m) {
+                    // console.log(m)
+                    if(m==1){
+                        $("#contents").load("/bs/session") /*都用这个*/
+                        Toast("添加成功","2000")
+                    }else if(m==0){
+                        Toast("数据库异常","2000")
+                    }else{
+                        Toast("你的级别还不够高,加油吧！少年。","2000")
+                    }
+                },
+            })
+        })
+    })
+</script>
+</body>
+</html>

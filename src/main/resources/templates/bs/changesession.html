@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+
+</head>
+<body>
+<h1 class="text-capitalize text-black-50 font-weight-normal">用户管理</h1>
+<div class="breadcrumb-holder">
+    <div class="container-fluid">
+        <ul class="breadcrumb">
+            <li class="breadcrumb-item"><a href="index.html">系统管理</a></li>
+            <li class="breadcrumb-item active">用户管理</li>
+            <li class="breadcrumb-item active">修改用户
+                </li>
+        </ul>
+    </div>
+</div>
+<div class="common-3">
+    <form>
+        <div class="form-group col-md-8 kid" th:data-id="${test.tId}">
+            <label for="kchao">考场号</label>
+            <input type="text" class="form-control " id="kchao"  placeholder="考试号" th:value="${test.tNum}">
+        </div>
+        <div class="form-group col-md-8">
+            <label for="kcdz">考试地址</label>
+            <input type="text" class="form-control " id="kcdz"  placeholder="考试地址"  th:value="${test.tHall}">
+        </div>
+
+        <div class="form-group col-md-8">
+            <label for="kcyyrs">考场已有人数</label>
+            <input type="text" class="form-control " id="kcyyrs"  placeholder="考场已有人数"  th:value="${test.tLimited}">
+        </div>
+
+
+        <div class="col-md-6">
+            <button type="button" class="btn btn-default  btn-len"><a href="javascript:history.back(-1)">返回</a> </button>
+            <button type="button" class="btn btn-primary btn-len">更改考场</button>
+        </div>
+    </form>
+</div>
+
+<script type="text/javascript" src="/js/jquery-2.1.1.min.js"/>
+<script type="text/javascript" src="/js/rcswitcher.min.js"/>
+<script>
+    $(function () {
+        $(".btn-primary").click(function () {
+            var k1 = $("#kchao").val();
+            var k2= $("#kcdz").val();
+            var k3 = $("#kcyyrs").val();
+            var kid = $(".kid").attr("data-id");
+            console.log(kid)
+            // console.log(k1)
+            // console.log(k2)
+            $.ajax({
+                url:"/bs/sessionchange",
+                type:"get",
+                contentType:"application/json",
+                data:{"kch":k1,"kcdz":k2,"kcrs":k3,"kid":kid},
+                success:function (m) {
+                    console.log(m)
+                    if(m!=0){
+                        $("#contents").load("/bs/session") /*都用这个*/
+                        Toast("更新成功","2000")
+                    }else if(m==0){
+                        Toast("数据库异常","2000")
+                    }else{
+                        Toast("你的级别还不够高,加油吧！少年。","2000")
+                    }
+                },
+            })
+        })
+    })
+</script>
+</body>
+</html>
