@@ -13,7 +13,7 @@ public interface CandidateMapper {
     int insertSelective(Candidate record);
 
     Candidate selectByPrimaryKey(Integer cId);
-
+    String selectByPrimaryKeyToPwd(Integer cId);
     Candidate selectToLogin(Candidate candidate);
 
     int selectByPhone(String telephone);
@@ -27,4 +27,5 @@ public interface CandidateMapper {
     int updateByPrimaryKey(Candidate record);
 
     Candidate WpLogin(@Param("account") String account, @Param("pwd") String pwd);
+    Candidate selectByAccount(@Param("account") String account);
 }

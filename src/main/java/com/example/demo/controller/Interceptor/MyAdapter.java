@@ -1,4 +1,4 @@
-/*
+
 package com.example.demo.controller.Interceptor;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,8 +13,8 @@ public class MyAdapter extends WebMvcConfigurationSupport {
 
     @Override
     protected void addInterceptors(InterceptorRegistry registry) {
-       registry.addInterceptor(myInterceptor).addPathPatterns("/bs/**")
-               .excludePathPatterns("/bs/login","/bs/toLogin","/bs/Verification");
+       registry.addInterceptor(myInterceptor).addPathPatterns("/wp/secret/**")
+               .excludePathPatterns("wp/**");
         super.addInterceptors(registry);
     }
     @Override
@@ -27,4 +27,4 @@ public class MyAdapter extends WebMvcConfigurationSupport {
 
 
 }
-*/
+

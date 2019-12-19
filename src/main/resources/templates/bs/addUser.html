@@ -78,7 +78,7 @@ $(function () {
             contentType:"application/json",
             data:{"selected":selected,"state":state,"email":email,"password":password,"nickname":nickname,"phone":phone},
             success:function (m) {
-                console.log(m)
+               // console.log(m)
                 if(m==1){
                     $("#contents").load("/bs/user") /*都用这个*/
                     Toast("添加成功","2000")

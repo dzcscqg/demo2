@@ -1,5 +1,6 @@
 package com.example.demo.entity;
 
+import lombok.Data;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
@@ -12,6 +13,7 @@ import java.util.regex.Pattern;
 @ToString
 @Getter
 @Setter
+@Data
 public class Admin implements Serializable {
     private Integer aId;
 
@@ -137,7 +139,30 @@ public class Admin implements Serializable {
         this.aCount = aCount;
     }
 
- /*   public boolean isMail(String account){
+    public String getaRole() {
+        return aRole;
+    }
+
+    public void setaRole(String aRole) {
+        this.aRole = aRole;
+    }
+
+    public Set<Role> getRoles() {
+        return roles;
+    }
+
+    public void setRoles(Set<Role> roles) {
+        this.roles = roles;
+    }
+
+    public Set<Authority> getPermissions() {
+        return permissions;
+    }
+
+    public void setPermissions(Set<Authority> permissions) {
+        this.permissions = permissions;
+    }
+/*   public boolean isMail(String account){
         String pattern = "\\w+@{1}\\w+\\.{1}\\w+";
         boolean isMatch = Pattern.matches(pattern, account);
         return isMatch;

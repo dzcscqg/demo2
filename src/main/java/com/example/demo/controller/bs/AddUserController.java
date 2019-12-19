@@ -51,8 +51,6 @@ public class AddUserController {
         }else {
             return 0;
         }
-
-
     }
 
     public Date getDate() {

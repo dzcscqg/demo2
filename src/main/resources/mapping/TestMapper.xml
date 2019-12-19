@@ -2,70 +2,132 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="com.example.demo.mapper.TestMapper" >
   <resultMap id="BaseResultMap" type="com.example.demo.entity.Test" >
-    <id column="id" property="id" jdbcType="INTEGER" />
-    <result column="t_name" property="tName" jdbcType="VARCHAR" />
-    <result column="t_pwd" property="tPwd" jdbcType="VARCHAR" />
+    <id column="t_id" property="tId" jdbcType="INTEGER" />
+    <result column="m_id" property="mId" jdbcType="INTEGER" />
+    <result column="t_num" property="tNum" jdbcType="INTEGER" />
+    <result column="t_hall" property="tHall" jdbcType="VARCHAR" />
+    <result column="t_limited" property="tLimited" jdbcType="INTEGER" />
+  </resultMap>
+  <resultMap id="tid" type="com.example.demo.entity.Test" >
+    <id column="t_id" property="tId" jdbcType="INTEGER" />
   </resultMap>
   <sql id="Base_Column_List" >
-    id, t_name, t_pwd
+    t_id, m_id, t_num, t_hall, t_limited
   </sql>
+  <select id="selectkch" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from test
+    where t_num=#{kch}
+  </select>
+  <select id="selectid" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from test
+    where t_id=#{id}
+  </select>
+  <select id="selectmid" resultMap="BaseResultMap" parameterType="java.lang.Integer">
+   select t_id,t_num,t_hall,t_limited , m_id from test
+   where m_id = #{mid}
+  </select>
+  <select id="selectmid2" resultMap="BaseResultMap" parameterType="java.lang.Integer">
+   select t_id from test
+   where m_id = #{mid}
+  </select>
+  <select id="selectkcdz" resultMap="BaseResultMap" parameterType="java.lang.String">
+   select t_id,t_num,t_hall,t_limited , m_id from test
+   where t_hall = #{kcdz,jdbcType=VARCHAR}
+  </select>
+  <select id="selecttest" resultMap="BaseResultMap" parameterType="java.lang.Integer">
+   select t_id,t_num,t_hall,t_limited , m_id from test
+
+  </select>
   <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
     select 
     <include refid="Base_Column_List" />
     from test
-    where id = #{id,jdbcType=INTEGER}
+    where t_id = #{tId,jdbcType=INTEGER}
   </select>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
     delete from test
-    where id = #{id,jdbcType=INTEGER}
+    where t_id = #{tId,jdbcType=INTEGER}
   </delete>
   <insert id="insert" parameterType="com.example.demo.entity.Test" >
-    insert into test (id, t_name, t_pwd
-      )
-    values (#{id,jdbcType=INTEGER}, #{tName,jdbcType=VARCHAR}, #{tPwd,jdbcType=VARCHAR}
-      )
+    insert into test (t_id, m_id, t_num, 
+      t_hall, t_limited)
+    values (#{tId,jdbcType=INTEGER}, #{mId,jdbcType=INTEGER}, #{tNum,jdbcType=INTEGER}, 
+      #{tHall,jdbcType=VARCHAR}, #{tLimited,jdbcType=INTEGER})
   </insert>
   <insert id="insertSelective" parameterType="com.example.demo.entity.Test" >
     insert into test
     <trim prefix="(" suffix=")" suffixOverrides="," >
-      <if test="id != null" >
-        id,
+      <if test="tId != null" >
+        t_id,
       </if>
-      <if test="tName != null" >
-        t_name,
+      <if test="mId != null" >
+        m_id,
       </if>
-      <if test="tPwd != null" >
-        t_pwd,
+      <if test="tNum != null" >
+        t_num,
+      </if>
+      <if test="tHall != null" >
+        t_hall,
+      </if>
+      <if test="tLimited != null" >
+        t_limited,
       </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides="," >
-      <if test="id != null" >
-        #{id,jdbcType=INTEGER},
+      <if test="tId != null" >
+        #{tId,jdbcType=INTEGER},
       </if>
-      <if test="tName != null" >
-        #{tName,jdbcType=VARCHAR},
+      <if test="mId != null" >
+        #{mId,jdbcType=INTEGER},
       </if>
-      <if test="tPwd != null" >
-        #{tPwd,jdbcType=VARCHAR},
+      <if test="tNum != null" >
+        #{tNum,jdbcType=INTEGER},
+      </if>
+      <if test="tHall != null" >
+        #{tHall,jdbcType=VARCHAR},
+      </if>
+      <if test="tLimited != null" >
+        #{tLimited,jdbcType=INTEGER},
       </if>
     </trim>
   </insert>
   <update id="updateByPrimaryKeySelective" parameterType="com.example.demo.entity.Test" >
     update test
     <set >
-      <if test="tName != null" >
-        t_name = #{tName,jdbcType=VARCHAR},
+      <if test="mId != null" >
+        m_id = #{mId,jdbcType=INTEGER},
       </if>
-      <if test="tPwd != null" >
-        t_pwd = #{tPwd,jdbcType=VARCHAR},
+      <if test="tNum != null" >
+        t_num = #{tNum,jdbcType=INTEGER},
+      </if>
+      <if test="tHall != null" >
+        t_hall = #{tHall,jdbcType=VARCHAR},
+      </if>
+      <if test="tLimited != null" >
+        t_limited = #{tLimited,jdbcType=INTEGER},
       </if>
     </set>
-    where id = #{id,jdbcType=INTEGER}
+    where t_id = #{tId,jdbcType=INTEGER}
   </update>
   <update id="updateByPrimaryKey" parameterType="com.example.demo.entity.Test" >
     update test
-    set t_name = #{tName,jdbcType=VARCHAR},
-      t_pwd = #{tPwd,jdbcType=VARCHAR}
-    where id = #{id,jdbcType=INTEGER}
+    set
+      t_num = #{tNum,jdbcType=INTEGER},
+      t_hall = #{tHall,jdbcType=VARCHAR},
+      t_limited = #{tLimited,jdbcType=INTEGER}
+    where t_id = #{tId,jdbcType=INTEGER}
+  </update>
+  <update id="changemid" parameterType="com.example.demo.entity.Test"  >
+    update test
+    <set >
+      <if test="mId != null" >
+        m_id = #{mId,jdbcType=INTEGER},
+      </if>
+    </set>
+    where t_id = #{tId,jdbcType=INTEGER}
   </update>
 </mapper>

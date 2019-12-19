@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 @Controller
 @RequestMapping("/wp")
@@ -36,6 +37,13 @@ public class LoginController {
             }else{
                 /*登录成功*/
                 request.getSession().setAttribute("account",account);
+                request.getSession().setAttribute("nickname",candidate.getcNickname());
+                request.getSession().setAttribute("keys",candidate.getcId());
+                String sign=(String) request.getSession().getAttribute("sign");
+                if(sign!=null){
+                    request.getSession().removeAttribute("sign");
+                    return "redirect:Exam";
+                }
                 return "redirect:HomePage";
             }
         }else {
@@ -44,4 +52,9 @@ public class LoginController {
         }
     }
 
+    @RequestMapping("logout")
+    public String logout(HttpSession httpSession){
+        httpSession.invalidate();
+        return "wp/HomePage";
+    }
 }
